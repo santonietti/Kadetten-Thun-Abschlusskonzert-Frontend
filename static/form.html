@@ -20,7 +20,7 @@
 		<meta name="og:image" content="bild url">
 	
 		<!-- Stylesheet -->
-		<link rel="stylesheet" href="/_static/css/style.css">
+		<link rel="stylesheet" href="css/style.css">
 		
 		<!-- favicon -->
 		
@@ -31,14 +31,14 @@
 	
 	<body class="form">
 		<header>
-			<a href="index.html"><img id="logo" src="/_static/assets/images/logo-kadetten.png"></a>
+			<a href="index.html"><img id="logo" src="assets/images/logo-kadetten.png"></a>
 			<a href="index.html"><h1>Abschlusskonzert Kadetten Thun</h1></a>
 		</header>
 		
 		<main>
 			<div class="content">
 				<h2>Tickets Reservieren</h2>
-				<form method="post" action="" id="ticketform" name="ticketform">
+				<form method="post" action="" id="ticketform"  name="ticketform" onsubmit="addItem()">
 					<fieldset class="form-block">
 						<input name="prename" type="text" placeholder="Vorname" value="" required >
 						<input name="lastname" type="text" placeholder="Nachname" value="" required >
@@ -62,11 +62,11 @@
 								<time datetime="">19.30 Uhr</time>
 							</legend>
 							<label for="adult-sa">Erwachsene 20.–</label>
-							<input name="adult-sa" type="number" value="0" required id="adult-sa">
+							<input name="adult-sa" type="number" value="0" required id="adult-sa" data-ticket="Erwachsene" data-Day="Sa">
 							<label for="child-sa">Kind im Schulalter 5.–</label>
-							<input name="child-sa" type="number" value="0" required id="child-sa">
+							<input name="child-sa" type="number" value="0" required id="child-sa" data-ticket="Kind" data-Day="Sa">
 							<label for="k-child-sa">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-sa" type="number" value="0" required id="k-child-sa">
+							<input name="k-child-sa" type="number" value="0" required id="k-child-sa" data-ticket="KleinKind" data-Day="Sa">
 						</fieldset>
 						<fieldset class="dayset">
 							<legend>
@@ -74,11 +74,11 @@
 								<time datetime="">19.30 Uhr</time>
 							</legend>
 							<label for="adult-sa">Erwachsene 20.–</label>
-							<input name="adult-sa" type="number" value="0" required id="adult-sa">
+							<input name="adult-sa" type="number" value="0" required id="adult-sa" data-ticket="Erwachsene" data-Day="So">
 							<label for="child-sa">Kind im Schulalter 5.–</label>
-							<input name="child-sa" type="number" value="0" required id="child-sa">
+							<input name="child-sa" type="number" value="0" required id="child-sa" data-ticket="Kind" data-Day="So">
 							<label for="k-child-sa">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-sa" type="number" value="0" required id="k-child-sa">
+							<input name="k-child-sa" type="number" value="0" required id="k-child-sa" data-ticket="KleinKind" data-Day="So">
 						</fieldset>
 					</fieldset>
 					<textarea name="text" placeholder="Bemerkung" rows="1"></textarea>
@@ -89,7 +89,8 @@
 
 		<!-- load scripts -->
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-		<script src="/_static/js/main.js" type="text/javascript"></script>
+		<script src="js/main.js" type="text/javascript"></script>
+		<script src="js/Api.js" type="text/javascript"></script>
 		
 	</body>
 </html>
