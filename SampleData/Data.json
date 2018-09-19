@@ -1,0 +1,25 @@
+{
+    "email": "pipp@gmail.com",
+    "clientLastName": "tröt",
+    "clientFirstName": "pipp",
+    "bemerkung": "tröt",
+    "kadettLastName": "nöbu",
+    "kadettFirstName": "pipp",
+    "tickets": [
+      {
+        "type": "Erwachsene",
+        "quantity": 10,
+        "day": null
+      },
+      {
+        "type": "Kind",
+        "quantity": 5,
+        "day": null
+      },
+      {
+        "type": "KleinKind",
+        "quantity": 1,
+        "day": null
+      }
+    ]
+  }
