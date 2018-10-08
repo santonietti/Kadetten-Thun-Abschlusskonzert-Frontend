@@ -4,7 +4,6 @@ window.onload = function () {
         .then(res => res.json())
         .then(function (data) {
             var html = '';
-            var htmlHeader = '<th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Telefon</th><th>Kind in Kadetten</th><th>Vorname Kind</th><th>Nachname Kind</th><th>Kind in Kader</th>';
             for (var i = 0; i < data.length; i++) {
                 html += '<tr >';
                 html += '<td>' + data[i].clientLastName + '</td>';
@@ -18,40 +17,48 @@ window.onload = function () {
 
                 for (var x = 0; x < data[i].tickets.length; x++) {
                     if (data[i].tickets[x].day == "Sa") {
-                        if (data[i].tickets[x].type == "Erwachsene") {
-                            htmlHeader += '<th>Tickets Sa Erwachsene</th>';
+                        if (data[i].tickets[x].type == "Erwachsene")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
-                        else if (data[i].tickets[x].type == "Kind") {
-                            htmlHeader += '<th>Tickets Sa Kind</th>';
+                        else
+                            html += '<td>0</td>';
+                        if (data[i].tickets[x].type == "Kind")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
-                        else if (data[i].tickets[x].type == "KleinKind") {
-                            htmlHeader += '<th>Tickets Sa KleinKind</th>';
+                        else
+                            html += '<td>0</td>';
+                        if (data[i].tickets[x].type == "KleinKind")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
+                        else
+                            html += '<td>0</td>';
                     }
-                    else if (data[i].tickets[x].day == "So") {
-                        if (data[i].tickets[x].type == "Erwachsene") {
-                            htmlHeader += '<th>Tickets So Erwachsene</th>';
+                    else {
+                        html += '<td>0</td>';
+                        html += '<td>0</td>';
+                        html += '<td>0</td>';
+                    }
+                    if (data[i].tickets[x].day == "So") {
+                        if (data[i].tickets[x].type == "Erwachsene")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
-                        else if (data[i].tickets[x].type == "Kind") {
-                            htmlHeader += '<th>Tickets So Kind</th>';
+                        else
+                            html += '<td>0</td>';
+                        if (data[i].tickets[x].type == "Kind")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
-                        else if (data[i].tickets[x].type == "KleinKind") {
-                            htmlHeader += '<th>Tickets So KleinKind</th>';
+                        else
+                            html += '<td>0</td>';
+                        if (data[i].tickets[x].type == "KleinKind")
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        }
+                        else
+                            html += '<td>0</td>';
+                    }
+                    else {
+                        html += '<td>0</td>';
+                        html += '<td>0</td>';
+                        html += '<td>0</td>';
                     }
                 }
-                htmlHeader += '<th>Bemerkung</th>';                
                 html += '<td>' + data[i].bemerkung + '</td>';
                 html += '<td class="edit-icon">' + '<a onclick="modifyItem()" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
                 html += '</tr>';
             }
             document.getElementById("result").innerHTML = html;
-            document.getElementById("resultTicket").innerHTML = htmlHeader;
         });
 }

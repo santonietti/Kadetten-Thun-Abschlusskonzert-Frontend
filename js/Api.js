@@ -35,21 +35,25 @@ function addItem(event) {
   //   }
   // }
   var data = {
-    email: "pipp@gmail.com",
+    email: "tuuut@gmail.com",
     clientLastName: "tröt",
     clientFirstName: "pipp",
     bemerkung: "tröt",
     kadettLastName: "nöbu",
     kadettFirstName: "pipp",
-    kadettInKader: false,
     tickets: [
-      {
-        type: "Erwachsene",
-        quantity: 10,
-        day: null
-      }
+        {
+            type: "Erwachsene",
+            quantity: 10,
+            date: "Sa"
+        },
+        {
+            type: "Kind",
+            quantity: 5,
+            date: "So"
+        }
     ]
-  }
+}
   console.log(data)
   return fetch(uri, {
     method: 'POST', // or 'PUT'
