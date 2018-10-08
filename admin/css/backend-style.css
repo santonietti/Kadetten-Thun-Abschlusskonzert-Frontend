@@ -92,7 +92,7 @@ table thead th{padding: 10px 15px; white-space: nowrap; border-right: 1px solid 
 table thead th:first-of-type{border-left: 1px solid #585858;}
 table thead th:last-of-type{border-right: 1px solid #585858;}
 table tbody td{padding: 10px 15px; white-space: nowrap; border-right: 1px solid #AEAEAE; border-left: 1px solid #AEAEAE; border-bottom: 1px solid #AEAEAE; border-image: none; text-align: left;}
-table tbody td:last-of-type{border: none;}
+table tbody td:last-of-type{border: none; position: absolute; right: 40px;}
 td.edit-icon i{color: #E53946; font-size: 1.2rem;}
 
 
