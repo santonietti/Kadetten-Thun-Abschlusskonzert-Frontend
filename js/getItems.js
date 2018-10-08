@@ -49,6 +49,7 @@ window.onload = function () {
                 }
                 htmlHeader += '<th>Bemerkung</th>';                
                 html += '<td>' + data[i].bemerkung + '</td>';
+                html += '<td class="edit-icon">' + '<a onclick="modifyItem()" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
                 html += '</tr>';
             }
             document.getElementById("result").innerHTML = html;
