@@ -1,4 +1,4 @@
-
+const uri = 'https://kadetten-dev.scapp.io/api/order';
 window.onload = function () {
     fetch(uri)
         .then(res => res.json())
@@ -15,45 +15,48 @@ window.onload = function () {
                 html += '<td>' + data[i].kadettFirstName + '</td>';
                 html += '<td>' + data[i].kadettInKader + '</td>';
 
+                var ticketsObj = {};
+
+                for (var x = 0; x < (6 - data[i].tickets.length); x++) {
+                    ticketsObj  += {
+                        quantity: 0,
+                        type: "",
+                        day: ""
+                    };
+                }
+                Object.assign(data[i].tickets, ticketsObj);
+
                 for (var x = 0; x < data[i].tickets.length; x++) {
-                    if (data[i].tickets[x].day == "Sa") {
-                        if (data[i].tickets[x].type == "Erwachsene")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                        if (data[i].tickets[x].type == "Kind")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                        if (data[i].tickets[x].type == "KleinKind")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                    }
-                    else {
+                    
+                    var day = data[i].tickets[x].day;
+                    var quantity = data[i].tickets[x].quantity;
+                    var type = data[i].tickets[x].type;
+
+                    
+                    if (type == "Erwachsene" && day == "Sa")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
+                    if (type == "Kind" && day == "Sa")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
+                    if (type == "KleinKind" && day == "Sa")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
-                    }
-                    if (data[i].tickets[x].day == "So") {
-                        if (data[i].tickets[x].type == "Erwachsene")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                        if (data[i].tickets[x].type == "Kind")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                        if (data[i].tickets[x].type == "KleinKind")
-                            html += '<td>' + data[i].tickets[x].quantity + '</td>';
-                        else
-                            html += '<td>0</td>';
-                    }
-                    else {
+                    if (type == "Erwachsene" && day == "So")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
+                    if (type == "Kind" && day == "So")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
+                    if (type == "KleinKind" && day == "So")
+                        html += '<td>' + quantity + '</td>';
+                    else
                         html += '<td>0</td>';
-                    }
                 }
                 html += '<td>' + data[i].bemerkung + '</td>';
                 html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';

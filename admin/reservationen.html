@@ -8,7 +8,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<meta name="robots" content="noindex" />
-
+	<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
+	
 	<!-- content meta tags -->
 	<meta name="author" content="Kadetten Thun">
 
@@ -49,10 +50,10 @@
 	</header>
 
 			<main>
-				<button class="download-button">Liste Herunterladen</button>
+				<button class="download-button" onclick="tableToExcel('reservationenTable', 'W3C Example Table')" download>Liste Herunterladen</button>
 				<h2>Reservationen</h2>
 				<div class="table-wrapper">
-					<table>
+					<table id="reservationenTable">
 						<thead>
 							<tr>
 								<th>Vorname</th>
@@ -82,10 +83,9 @@
 	</main>
 
 	<!-- load scripts -->
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	 crossorigin="anonymous"></script>-->
-	<script src="../js/api.js" type="text/javascript"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script> -->
 	<script src="../js/getItems.js" type="text/javascript"></script>
+	<script src="../js/main.js" type="text/javascript"></script>
 
 </body>
 
