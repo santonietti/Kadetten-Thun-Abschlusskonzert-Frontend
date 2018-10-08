@@ -4,9 +4,8 @@ window.onload = function () {
         .then(res => res.json())
         .then(function (data) {
             var html = '';
+            var htmlHeader = '<th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Telefon</th><th>Kind in Kadetten</th><th>Vorname Kind</th><th>Nachname Kind</th><th>Kind in Kader</th>';
             for (var i = 0; i < data.length; i++) {
-                var html = '';
-                var htmlHeader = '<th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Telefon</th><th>Kind in Kadetten</th><th>Vorname Kind</th><th>Nachname Kind</th><th>Kind in Kader</th>';
                 html += '<tr >';
                 html += '<td>' + data[i].clientLastName + '</td>';
                 html += '<td>' + data[i].clientFirstName + '</td>';
