@@ -72,12 +72,12 @@ footer a:hover{background: white; border: 2px solid #C2A779; color: #C2A779; tra
 body.form footer{display: none;}
 fieldset{margin-bottom: 40px;}
 input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea{display: inline-block; padding: 10px 0px; -webkit-appearance: none; background: none; color: black; border-bottom: 1px solid black; width: calc(50% - 20px); margin-bottom: 20px; transition: all 0.3s ease;}
-input[type="text"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="number"]:hover, textarea:hover{border-bottom: 2px solid black; margin-bottom: 13px;}
-input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="number"]:focus, textarea:focus{border-bottom: 3px solid #C2A779; margin-bottom: 12px;}
-input:nth-of-type(odd){margin-right: 36px;}
+input[type="text"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="number"]:hover, textarea:hover{border-bottom: 2px solid black; margin-bottom: 19px;}
+input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="number"]:focus, textarea:focus{border-bottom: 3px solid #C2A779; margin-bottom: 18px;}
+.form-block input:nth-of-type(odd){margin-right: 36px;}
 ::placeholder {color: black; opacity: 1;}
 input[type="checkbox"]{-webkit-appearance: checkbox;}
-input[type="checkbox"]{margin-right: 15px;}
+input[type="checkbox"]{margin-right: 12px!important;}
 #invisibleform{height: 0; overflow: hidden; opacity: 0; transition: all 0.3s ease;}
 #child-checkbox:checked ~ #invisibleform{height: 85px; opacity: 1; overflow: visible;}
 .form-block .dayset{width: calc(50% - 20px); display: inline-block; font-size: 0; margin-bottom: 0;}
@@ -87,13 +87,9 @@ input[type="checkbox"]{margin-right: 15px;}
 .form-block .dayset label{width: calc(100% - 61px); display: inline-block;  padding: 10px 0px; border-bottom: 1px solid black; font-size: 1rem;}
 .form-block .dayset input:nth-of-type(odd){margin-right: 0;}
 input[type="number"]{text-align: right; margin-bottom: 20px;}
-input[type="number"]:hover{margin-bottom: 19px;}
-input[type="number"]:focus{margin-bottom: 18px;}
 
-textarea{width: 100%; resize: vertical; }
-textarea:hover{margin-bottom: 19px;}
-textarea:focus{margin-bottom: 18px;}
-input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
+textarea{width: 100%; resize: vertical;}
+input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 20px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
 input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
 
 .feedback-a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: fit-content; transition: all 0.5s ease; border: 2px solid white;}
