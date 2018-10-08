@@ -5,67 +5,53 @@ window.onload = function () {
         .then(function (data) {
             var html = '';
             for (var i = 0; i < data.length; i++) {
-                var row = document.createElement("tr");
-
-                var cellclientLastName = document.createElement("td");
-                var cellclientFirstName = document.createElement("td");
-                var cellemail = document.createElement("td");
-                var cellTelefon = document.createElement("td");
-                var cellKindinKadetten = document.createElement("td");
-                var cellkadettLastName = document.createElement("td");
-                var cellkadettFirstName = document.createElement("td");
-                var cellkadettInKader = document.createElement("td");
-
-                var cellTextclientLastName = document.createTextNode(data[i].clientLastName);
-                var cellTextclientFirstName = document.createTextNode(data[i].clientFirstName);
-                var cellTextemail = document.createTextNode(data[i].email);
-                var cellTextTelefon = document.createTextNode("Telefon");
-                var cellTextKindinKadetten = document.createTextNode("Kind in Kadetten");
-                var cellTextkadettLastName = document.createTextNode(data[i].kadettLastName);
-                var cellTextkadettFirstName = document.createTextNode(data[i].kadettFirstName);
-                var cellTextkadettInKader = document.createTextNode(data[i].kadettInKader);
-
-                cellclientLastName.appendChild(cellText);
-                cellclientFirstName.appendChild(cellText);
-                cellemail.appendChild(cellText);
-                cellTelefon .appendChild(cellText)
-                cellKindinKadetten .appendChild(cellText)
-                cellkadettLastName .appendChild(cellText)
-                cellkadettFirstName.appendChild(cellText)
-                cellkadettInKader.appendChild(cellText)
+                var html = '';
+                var htmlHeader = '<th>Vorname</th><th>Nachname</th><th>E-Mail</th><th>Telefon</th><th>Kind in Kadetten</th><th>Vorname Kind</th><th>Nachname Kind</th><th>Kind in Kader</th>';
+                html += '<tr >';
+                html += '<td>' + data[i].clientLastName + '</td>';
+                html += '<td>' + data[i].clientFirstName + '</td>';
+                html += '<td>' + data[i].email + '</td>';
+                html += '<td>Telefon</td>';
+                html += '<td>Kind in Kadetten</td>';
+                html += '<td>' + data[i].kadettLastName + '</td>';
+                html += '<td>' + data[i].kadettFirstName + '</td>';
+                html += '<td>' + data[i].kadettInKader + '</td>';
 
                 for (var x = 0; x < data[i].tickets.length; x++) {
                     if (data[i].tickets[x].day == "Sa") {
                         if (data[i].tickets[x].type == "Erwachsene") {
+                            htmlHeader += '<th>Tickets Sa Erwachsene</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                         else if (data[i].tickets[x].type == "Kind") {
+                            htmlHeader += '<th>Tickets Sa Kind</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                         else if (data[i].tickets[x].type == "KleinKind") {
+                            htmlHeader += '<th>Tickets Sa KleinKind</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                     }
-                    if (data[i].tickets[x].day == "So") {
+                    else if (data[i].tickets[x].day == "So") {
                         if (data[i].tickets[x].type == "Erwachsene") {
+                            htmlHeader += '<th>Tickets So Erwachsene</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                         else if (data[i].tickets[x].type == "Kind") {
+                            htmlHeader += '<th>Tickets So Kind</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                         else if (data[i].tickets[x].type == "KleinKind") {
+                            htmlHeader += '<th>Tickets So KleinKind</th>';
                             html += '<td>' + data[i].tickets[x].quantity + '</td>';
                         }
                     }
                 }
+                htmlHeader += '<th>Bemerkung</th>';                
                 html += '<td>' + data[i].bemerkung + '</td>';
                 html += '</tr>';
             }
-            var table = document.getElementsByTagName("table");
-            var row = table.insertRow(0);
-            var cell1 = row.insertCell(0);
-            var cell2 = row.insertCell(1);
-            cell1.innerHTML = "NEW CELL1";
-            $('#results').html(html);
+            document.getElementById("result").innerHTML = html;
+            document.getElementById("resultTicket").innerHTML = htmlHeader;
         });
 }

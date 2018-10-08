@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
 <head>
 	<title>Backend | Abschlusskonzert Kadetten Thun</title>
@@ -20,6 +19,7 @@
 
 	<!-- Google fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+	<link rel="icon" type="image/png" href="../assets/images/1f595-1f3ff.png">
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	 crossorigin="anonymous">
@@ -44,114 +44,77 @@
 			<div>
 				<p>Username</p>
 				<a>Logout</a>
-=======
-	<head>
-		<title>Backend | Abschlusskonzert Kadetten Thun</title>
-		
-		<!-- browser meta tags -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta charset="utf-8">
-		<meta name="robots" content="noindex" />
-		
-		<!-- content meta tags -->
-		<meta name="author" content="Kadetten Thun">
-		
-		<!-- Stylesheet -->
-		<link rel="stylesheet" href="css/backend-style.css">
-		
-		<!-- favicon -->
-		
-		<!-- Google fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-		
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-		<link rel="icon" type="image/png" href="../assets/images/1f595-1f3ff.png">
-		
-	</head>
-	
-	<body>
-		<header>
-			<a href="../index.html" target="_blank"><h1>Abschlusskonzert Kadetten Thun</h1></a>
-			<nav>
-				<ul>
-					<li class="active"><a href="reservationen.html"><i class="fas fa-table"></i>Reservationen</a></li>
-					<li class=""><a href="intro.html"><i class="fas fa-home"></i>Intro</a></li>
-					<li class=""><a href="formular.html"><i class="fas fa-stream"></i>Formular</a></li>
-				</ul>
-			</nav>
-			<div id="user-panel">
-				<i class="fas fa-user-circle"></i>
-				<div>
-					<p>Username</p>
-					<a>Logout</a>
-				</div>
+
+				<head>
+					<title>Backend | Abschlusskonzert Kadetten Thun</title>
+
+					<!-- browser meta tags -->
+					<meta name="viewport" content="width=device-width, initial-scale=1">
+					<meta charset="utf-8">
+					<meta name="robots" content="noindex" />
+
+					<!-- content meta tags -->
+					<meta name="author" content="Kadetten Thun">
+
+					<!-- Stylesheet -->
+					<link rel="stylesheet" href="css/backend-style.css">
+
+					<!-- favicon -->
+
+					<!-- Google fonts -->
+					<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
+					<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+					 crossorigin="anonymous">
+					<link rel="icon" type="image/png" href="../assets/images/1f595-1f3ff.png">
+
+				</head>
+
+				<body>
+					<header>
+						<a href="../index.html" target="_blank">
+							<h1>Abschlusskonzert Kadetten Thun</h1>
+						</a>
+						<nav>
+							<ul>
+								<li class="active"><a href="reservationen.html"><i class="fas fa-table"></i>Reservationen</a></li>
+								<li class=""><a href="intro.html"><i class="fas fa-home"></i>Intro</a></li>
+								<li class=""><a href="formular.html"><i class="fas fa-stream"></i>Formular</a></li>
+							</ul>
+						</nav>
+						<div id="user-panel">
+							<i class="fas fa-user-circle"></i>
+							<div>
+								<p>Username</p>
+								<a>Logout</a>
+							</div>
+						</div>
+					</header>
+
+					<main>
+						<button class="download-button">Liste Herunterladen</button>
+						<h2>Reservationen</h2>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr id="resultTicket">
+										<th>Vorname</th>
+										<th>Nachname</th>
+										<th>E-Mail</th>
+										<th>Telefon</th>
+										<th>Kind in Kadetten</th>
+										<th>Vorname Kind</th>
+										<th>Nachname Kind</th>
+										<th>Kind in Kader</th>
+										<th>Beschribung</th>
+									</tr>
+								</thead>
+								<tbody id="result">
+
+								</tbody>
+							</table>
+						</div>
 			</div>
-		</header>
-		
-		<main>
-			<button class="download-button">Liste Herunterladen</button>
-			<h2>Reservationen</h2>
-			<div class="table-wrapper">
-				<table>
-					<thead>
-						<tr>
-							<th>Vorname</th>
-							<th>Nachname</th>
-							<th>E-Mail</th>
-							<th>Telefon</th>
-							<th>Kind in Kadetten</th>
-							<th>Vorname Kind</th>
-							<th>Nachname Kind</th>
-							<th>Kind in Kader</th>
-							<th>Tickets Sa Erwachsene</th>
-							<th>Tickets Sa Kind</th>
-							<th>Tickets Sa 0</th>
-							<th>Tickets So Erwachsene</th>
-							<th>Tickets So Kind</th>
-							<th>Tickets So 0</th>
-							<th>Beschribung</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>lalala</td>
-							<td>tada</td>
-							<td>sdf</td>
-							<td>gasfdgsa</td>
-							<td>asdf</td>
-							<td>sdfsa</td>							
-							<td>asdfasdgasdas</td>
-							<td>asdf</td>
-							<td>asdf</td>
-							<td>asdf</td>
-							<td>asdfsadfas</td>
-							<td>sdfas</td>		
-							<td>asdfsadfas</td>
-							<td>sdfas</td>
-							<td>sdfas</td>				
-						</tr>
-						<tr>
-							<td>lalala</td>
-							<td>tada</td>
-							<td>sdf</td>
-							<td>gasfdgsa</td>
-							<td>asdf</td>
-							<td>sdfsa</td>							
-							<td>asdfasdgasdas</td>
-							<td>asdf</td>
-							<td>asdf</td>
-							<td>asdf</td>
-							<td>asdfsadfas</td>
-							<td>sdfas</td>		
-							<td>asdfsadfas</td>
-							<td>sdfas</td>
-							<td>sdfas</td>					
-						</tr>
-					</tbody>
-				</table>
->>>>>>> bea05bf68f68f6e213f1d94d33e21729d8f16136
-			</div>
-		</div>
 	</header>
 
 	<main>
@@ -176,7 +139,7 @@
 					<th>Tickets So 0</th>
 					<th>Beschribung</th>
 				</thead>
-				<tbody id="result">
+				<tbody>
 
 				</tbody>
 			</table>
