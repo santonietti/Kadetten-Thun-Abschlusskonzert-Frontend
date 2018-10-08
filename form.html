@@ -34,7 +34,7 @@
 	
 	<body class="form">
 		<header>
-			<a href="index.html"><img id="logo" src="assets/images/logo-kadetten.png"></a>
+			<a href="index.html"><img id="logo" alt="kadetten THun" src="assets/images/logo-kadetten.png"></a>
 			<a href="index.html"><h1>Abschlusskonzert Kadetten Thun</h1></a>
 		</header>
 		
@@ -43,18 +43,18 @@
 				<h2>Tickets Reservieren</h2>
 				<form id="ticketform"  name="ticketform" onsubmit="addItem()">
 					<fieldset class="form-block">
-						<input name="prename" type="text" placeholder="Vorname" value="" required >
-						<input name="lastname" type="text" placeholder="Nachname" value="" required >
-						<input name="tel" type="tel" placeholder="Telefonnummer" value="" required >
-						<input name="email" type="email" placeholder="E-Mail" value="" required >
+						<input name="prename" type="text" placeholder="Vorname" value="" required />
+						<input name="lastname" type="text" placeholder="Nachname" value="" required />
+						<input name="tel" type="tel" placeholder="Telefonnummer" value="" required />
+						<input name="email" type="email" placeholder="E-Mail" value="" required />
 					</fieldset>
 					<fieldset class="form-block">
 						<input name="child" type="checkbox" value="" id="child-checkbox">
-						<label for="childcheckbox">Mein Kind spielt in der Kadettenmusik/Tambouren.</label>
+						<label for="child-checkbox">Mein Kind spielt in der Kadettenmusik/Tambouren.</label>
 						<fieldset id="invisibleform">
-							<input name="child-prename" type="text" placeholder="Vorname" value="" >
-							<input name="child-lastname" type="text" placeholder="Nachname" value="" >
-							<input name="child-kader" type="checkbox" value="" id="child-kader-checkbox" >
+							<input name="child-prename" type="text" placeholder="Vorname" value="" />
+							<input name="child-lastname" type="text" placeholder="Nachname" value="" />
+							<input name="child-kader" type="checkbox" value="" id="child-kader-checkbox" />
 							<label for="child-kader-checkbox">Mein Kind ist im Kader</label>
 						</fieldset>
 					</fieldset>
@@ -62,26 +62,26 @@
 						<fieldset class="dayset">
 							<legend>
 								<h3>Konzert Samstag 10. Februar (Kaderverabschiedung)</h3>
-								<time datetime="">19.30 Uhr</time>
+								<time datetime="19:30:00">19.30 Uhr</time>
 							</legend>
 							<label for="adult-sa">Erwachsene 20.–</label>
-							<input name="adult-sa" class="tickets" type="number" required value="0" data-ticket="Erwachsene" data-Day="Sa">
+							<input name="adult-sa" class="tickets" type="number" required value="0" data-ticket="Erwachsene" data-Day="Sa" id="adult-sa"/>
 							<label for="child-sa">Kind im Schulalter 5.–</label>
-							<input name="child-sa" class="tickets" type="number" required value="0" data-ticket="Kind" data-Day="Sa">
+							<input name="child-sa" class="tickets" type="number" required value="0" data-ticket="Kind" data-Day="Sa" id="child-sa"/>
 							<label for="k-child-sa">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-sa" class="tickets" type="number"required value="0" data-ticket="KleinKind" data-Day="Sa">
+							<input name="k-child-sa" id="k-child-sa" class="tickets" type="number" required value="0" data-ticket="KleinKind" data-Day="Sa"/>
 						</fieldset>
 						<fieldset class="dayset">
 							<legend>
 								<h3>Konzert Sonntag 11. Februar</h3>
-								<time datetime="">19.30 Uhr</time>
+								<time datetime="19:30:00">19.30 Uhr</time>
 							</legend>
 							<label for="adult-so">Erwachsene 20.–</label>
-							<input name="adult-so" class="tickets" type="number" value="0" required data-ticket="Erwachsene" data-Day="So">
+							<input name="adult-so" id="adult-so" class="tickets" type="number" value="0" required data-ticket="Erwachsene" data-Day="So"/>
 							<label for="child-so">Kind im Schulalter 5.–</label>
-							<input name="child-so" class="tickets" type="number" value="0" required data-ticket="Kind" data-Day="So">
+							<input name="child-so" id="child-so" class="tickets" type="number" value="0" required data-ticket="Kind" data-Day="So"/>
 							<label for="k-child-so">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-so" class="tickets" type="number" value="0" required data-ticket="KleinKind" data-Day="So">
+							<input name="k-child-so" id="k-child-so" class="tickets" type="number" value="0" required data-ticket="KleinKind" data-Day="So"/>
 						</fieldset>
 					</fieldset>
 					<textarea name="text" placeholder="Bemerkung" rows="1"></textarea>
