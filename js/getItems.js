@@ -55,8 +55,6 @@ window.onload = function () {
                         html += '<td>0</td>';
                     if (type == "KleinKind" && day == "So")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
                 }
                 html += '<td>' + data[i].bemerkung + '</td>';
                 html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
