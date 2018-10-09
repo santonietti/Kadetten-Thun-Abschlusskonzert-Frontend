@@ -18,7 +18,7 @@ window.onload = function () {
                 var ticketsObj = {};
 
                 for (var x = 0; x < (6 - data[i].tickets.length); x++) {
-                    ticketsObj  += {
+                    ticketsObj += {
                         quantity: 0,
                         type: "",
                         day: ""
@@ -27,33 +27,23 @@ window.onload = function () {
                 Object.assign(data[i].tickets, ticketsObj);
 
                 for (var x = 0; x < data[i].tickets.length; x++) {
-                    
+
                     var day = data[i].tickets[x].day;
                     var quantity = data[i].tickets[x].quantity;
                     var type = data[i].tickets[x].type;
 
-                    
+
                     if (type == "Erwachsene" && day == "Sa")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
-                    if (type == "Kind" && day == "Sa")
+                    else if (type == "Kind" && day == "Sa")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
-                    if (type == "KleinKind" && day == "Sa")
+                    else if (type == "Kleinkind" && day == "Sa")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
-                    if (type == "Erwachsene" && day == "So")
+                    else if (type == "Erwachsene" && day == "So")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
-                    if (type == "Kind" && day == "So")
+                    else if (type == "Kind" && day == "So")
                         html += '<td>' + quantity + '</td>';
-                    else
-                        html += '<td>0</td>';
-                    if (type == "KleinKind" && day == "So")
+                    else if (type == "Kleinkind" && day == "So")
                         html += '<td>' + quantity + '</td>';
                 }
                 html += '<td>' + data[i].bemerkung + '</td>';
