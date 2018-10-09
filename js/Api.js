@@ -1,15 +1,13 @@
 const uri = 'https://kadetten-dev.scapp.io/api/order';
 
 
-function GetItem() {
-}
+
 function modifyItem() {
 
 }
 function deleteItem() {
 
 }
-
 function addItem(event) {
   // var getfrom = document.getElementById("ticketform").elements;
   // var items = document.getElementsByClassName("tickets");
