@@ -85,6 +85,12 @@ textarea{resize: vertical; background: #F2F2F2; padding: 7px 15px; border-radius
 input:focus{border: 1px solid #585858;}
 input[type="time"], input[type="number"]{width: 90px;}
 
+/*REDACTOR*/
+.ql-toolbar{border-radius: 3px 3px 0px 0px; background: #F2F2F2; border: 1px solid #F2F2F2!important;}
+.ql-container{background: none; border: none!important;}
+.ql-editor{border-radius: 0px 0px 3px 3px; border: 1px solid #F2F2F2!important; background: #F2F2F2; transition: background 0.2s ease;}
+.ql-editor:focus{ border: 1px solid #585858!important; background: white;}
+
 /**** Table *****/
 .table-wrapper{ width: calc(100% - 60px); overflow: scroll; height: fit-content; overflow-y: hidden; float: left;}
 table{border-collapse: collapse; border-spacing: 0px;}
