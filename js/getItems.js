@@ -70,7 +70,7 @@ function GetItemByEmail(e) {
         .then(res => res.json())
         .then(function (data) {
 
-            var edithtml = '<section id="edit"><button class="delete-button" onmouseover="" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></button><button class="safe-button" onmouseover="" style="cursor: pointer;">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()" onmouseover="" style="cursor: pointer;"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
+            var edithtml = '<section id="edit"><button class="delete-button"><i class="fas fa-trash-alt"></i></button><button class="safe-button" onclick="safePopUp()">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2><form id="editform" name="editform" onsubmit="" >';
             for (i = 0; i < data.tickets.length; i++) {
 
                 var day = data.tickets[i].day;
@@ -91,9 +91,9 @@ function GetItemByEmail(e) {
                     edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" name="k-child-so" id="k-child-so" required />';
             }
             if (data.bemerkung == 'Keine')
-                edithtml += '<textarea name="text" rows="1"></textarea></div></section>';
+                edithtml += '<h3>Bemerkungen</h3><textarea name="text" rows="1"></textarea></form></div></section>';
             else
-                edithtml += '< h3 > Bemerkungen</h3><textarea name="text" rows="1">' + data.bemerkung + '</textarea></div></section>';
+                edithtml += '<h3>Bemerkungen</h3><textarea name="text" rows="1">' + data.bemerkung + '</textarea></form></div></section>';
 
             // INSERT EDIT SECTION
             document.getElementById("editcontainer").innerHTML = edithtml;
@@ -104,8 +104,44 @@ function GetItemByEmail(e) {
 
 
 function closePopUp(){
-    document.getElementById('edit').remove();
+	
+	//CHECK IF SOMETHING WAS CHANGED
+	var change = 0
+		
+	var inputs = document.querySelectorAll('input[type=number]');
+	
+	for (var i = 0; i < inputs.length; i++) {
+        var input = inputs[i];
+        var initialInputValue = input.getAttribute('value');
+        input.setAttribute('value', input.value);
+        if(initialInputValue != input.value) change = 1;
+    }
+    
+    var textareas = document.querySelectorAll('textarea');
+    for (var i = 0; i < textareas.length; i++) {
+        var textarea = textareas[i];
+        var initialTextareaValue = textarea.innerHTML;
+        textarea.innerHTML = textarea.value;
+        if(initialTextareaValue != textarea.innerHTML) change = 1;
+    }
+
+    //IF CHANGE MAKE POPUP
+    if(change == 1){
+	    if (confirm("Willst du die Seite Wirklich verlassen ohne die Änderungen zu speichern ?")) {
+        	document.getElementById('edit').remove();
+    	}
+    }else{
+	    document.getElementById('edit').remove();
+	}
+    	
 }
+
+function safePopUp(){
+	console.log('safe');
+	document.getElementById("editform").submit();
+}
+
+
 //     WINDOW: LOAD CALL
 
 window.onload = function () {

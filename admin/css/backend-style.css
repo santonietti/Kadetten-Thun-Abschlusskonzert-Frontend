@@ -59,9 +59,10 @@ header{width: 200px; background: #303030; position: fixed; left: 0; top: 0; heig
 main{background: #F2F2F2; min-height: 100%; min-height: 100vh; margin-left: 200px; padding: 90px 30px 30px 60px;}
 .download-button{background: white; padding: 7px 20px; color: #585858; position: fixed; top: 30px; right: 90px; border-radius: 3px; transition: all 0.3s ease;}
 .safe-button{background: #E53946; padding: 7px 20px; color: white; position: fixed; top: 30px; right: 60px; border-radius: 3px; transition: all 0.3s ease;}
-.delete-button{background: white; padding: 7px 20px; color: #585858; position: fixed; top: 30px; left: 60px; border-radius: 3px; transition: all 0.3s ease; font-family: 'Material Icons'; font-size: 1.3rem;}
+.delete-button{background: white; padding: 7px 20px; color: #585858; position: fixed; bottom: 30px; right: 60px; border-radius: 3px; transition: all 0.3s ease; font-size: 1rem;}
 .safe-button:hover, .download-button:hover{transform: scale(1.1);}
 .wrapper{max-width: 850px; margin: 0 auto; padding: 30px; background: white; position: relative;}
+button { cursor:pointer; }
 
 
 nav{padding: 0px 30px 0px 30px;}
@@ -106,10 +107,10 @@ td.edit-icon i{color: #E53946; font-size: 1.2rem;}
 
 /**** Edit *****/
 #edit{width: calc(100% - 200px); height: 100%; background: rgb(242, 242, 242, 0.95); display: block; position: fixed; top: 0; left: 200px; z-index: 2; padding-top: 90px; overflow-y: scroll; padding-bottom: 30px; opacity: 0; opacity: 0; transform: translateY(-16%); animation: fadeIn .3s ease-out 1 forwards;}
-#edit .delete-button{left: 260px; animation: fadeIn .3s ease-out 0.3s 1 forwards; opacity: 0;}
+#edit .delete-button{animation: fadeIn .3s ease-out 0.3s 1 forwards; opacity: 0;}
 #edit .safe-button{ animation: fadeIn .3s ease-out 0.3s 1 forwards; opacity: 0;}
 #edit input, #edit textarea{margin-top: 15px;}
-#edit .close{position: absolute; top: 30px; right: 30px; font-family: 'Material Icons'; font-size: 3rem; color: #E53946; padding: 7px 0;}
+#edit .close{position: absolute; top: 30px; right: 30px; font-size: 2rem; color: #E53946; padding: 0 4px;}
 
 @keyframes fadeIn {
   to {
