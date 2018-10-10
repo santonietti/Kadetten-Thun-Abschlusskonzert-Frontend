@@ -18,14 +18,6 @@ function GetItems() {
                 html += '<td>' + data[i].kadettInKader + '</td>';
 
                 var ticketsObj = {};
-
-                for (var x = 0; x < (6 - data[i].tickets.length); x++) {
-                    ticketsObj += {
-                        quantity: 0,
-                        type: "",
-                        day: ""
-                    };
-                }
                 Object.assign(data[i].tickets, ticketsObj);
 
                 for (var x = 0; x < data[i].tickets.length; x++) {
@@ -67,7 +59,6 @@ function AssignEditIcons() {
     for (var i = 0; i < editIcons.length; i++) {
         var editIcon = editIcons[i];
         editIcon.addEventListener("click", function (e) { GetItemByEmail(e) });
-
     }
 }
 
