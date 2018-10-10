@@ -79,7 +79,7 @@ function GetItemByEmail(e) {
         .then(res => res.json())
         .then(function (data) {
 
-            var edithtml = '<section id="edit"><button class="delete-button">delete_forever</button><button class="safe-button">Speichern</button><div class="wrapper"><button class="close">close</button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
+            var edithtml = '<section id="edit"><button class="delete-button">delete_forever</button><button class="safe-button">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()">close</button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
             for (i = 0; i < data.tickets.length; i++) {
 
                 var day = data.tickets[i].day;
@@ -112,9 +112,11 @@ function GetItemByEmail(e) {
 
 
 
+function closePopUp(){
+    document.getElementById('edit').remove();
+}
 //     WINDOW: LOAD CALL
 
 window.onload = function () {
     GetItems();
 }
-
