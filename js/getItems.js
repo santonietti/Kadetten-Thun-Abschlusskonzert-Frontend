@@ -70,7 +70,7 @@ function GetItemByEmail(e) {
         .then(res => res.json())
         .then(function (data) {
 
-            var edithtml = '<section id="edit"><button class="delete-button"><i class="fas fa-trash-alt"></i></button><button class="safe-button">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
+            var edithtml = '<section id="edit"><button class="delete-button" onmouseover="" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></button><button class="safe-button" onmouseover="" style="cursor: pointer;">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()" onmouseover="" style="cursor: pointer;"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
             for (i = 0; i < data.tickets.length; i++) {
 
                 var day = data.tickets[i].day;
