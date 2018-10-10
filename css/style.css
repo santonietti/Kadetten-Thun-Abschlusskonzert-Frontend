@@ -54,7 +54,7 @@ h3{font-family: 'BebasNeueBold'; font-size: 1.5rem; letter-spacing: 0.5px; color
 html, body{background: white; min-height: 100%;}
 header{padding: 40px 0px; background: white; width: 100%; position: relative;}
 #logo{position: absolute; top: 20px; left: 50px; max-width: 130px;}
-main{background: #F2F2F2; min-height: 100%;}
+main{background: #F2F2F2; min-height: calc(100vh - 102px);}
 .content{max-width: 970px; margin: 0 auto; padding: 60px 60px 120px 60px; width: 60%;}
 
 
@@ -92,8 +92,8 @@ textarea{width: 100%; resize: vertical;}
 input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 20px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
 input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
 
-.feedback-a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: fit-content; transition: all 0.5s ease; border: 2px solid white;}
-.feedback-a{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
+.feedback-a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
+.feedback-a:hover{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
 
 
 
