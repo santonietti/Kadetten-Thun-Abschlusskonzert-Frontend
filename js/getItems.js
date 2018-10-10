@@ -47,7 +47,8 @@ window.onload = function () {
                         html += '<td>' + quantity + '</td>';
                 }
                 html += '<td>' + data[i].bemerkung + '</td>';
-                html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
+                //html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
+                html += '<td class="edit-icon">' + '<a onclick="" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
                 html += '</tr>';
             }
             document.getElementById("result").innerHTML = html;
