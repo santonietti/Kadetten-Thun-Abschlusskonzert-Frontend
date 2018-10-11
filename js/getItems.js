@@ -1,5 +1,5 @@
-// const uri = 'https://kadetten-dev.scapp.io/api/order';
-const uri = 'https://localhost:44389/api/order';
+const uri = 'https://kadetten-dev.scapp.io/api/order';
+// const uri = 'https://localhost:44389/api/order';
 
 
 function GetItems() {
@@ -149,12 +149,12 @@ function closePopUp() {
 }
 
 function safePopUp(email) {
-    var items = document.getElementsByTagName("tickets");
+    var items = document.getElementsByClassName("tickets");
     var tickets = [];
     var url = uri + '/' + email;
 
     var data = {
-        email: document.getElementsByTagName("email").value,
+        email: document.getElementsByName("email")[0].value,
         tickets: tickets
     }
     for (var i = 0; i < items.length; i++) {
@@ -168,10 +168,13 @@ function safePopUp(email) {
     fetch(url, {
         method: 'PUT',
         body: JSON.stringify(data),
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
+    }).then(function(myJson) {
+        console.log(JSON.stringify(myJson));
+      });
 }
 function deleteItem(email) {
     var url = uri + '/' + email;
