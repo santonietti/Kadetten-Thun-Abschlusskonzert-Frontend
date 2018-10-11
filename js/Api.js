@@ -1,13 +1,7 @@
-const uri = 'https://localhost:44389/api/order';
+const url = 'https://kadetten-dev.scapp.io/api/order';
 
 
 
-function modifyItem() {
-
-}
-function deleteItem() {
-
-}
 function addItem() {
     var getfrom = document.getElementById("ticketform").elements;
     var items = document.getElementsByClassName("tickets");
@@ -30,8 +24,7 @@ function addItem() {
         };
         tickets.push(ticket);
     }
-    console.log(data);
-    fetch(uri, {
+    fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

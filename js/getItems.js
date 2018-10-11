@@ -1,4 +1,5 @@
-const uri = 'https://kadetten-dev.scapp.io/api/order';
+// const uri = 'https://kadetten-dev.scapp.io/api/order';
+const uri = 'https://localhost:44389/api/order';
 
 
 function GetItems() {
@@ -70,10 +71,18 @@ function GetItemByEmail(e) {
         .then(res => res.json())
         .then(function (data) {
 
+            var edithtml = '<section id="edit">';
+            //BUTTON DELETE
+            edithtml += '<button onclick="deleteItem(\'' + data.email + '\');" class="delete-button" onmouseover="" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></button>';
+            //BUTTON ADD
+            edithtml += '</button><button onclick="safePopUp(\'' + data.email + '\');" class="safe-button" onmouseover="" style="cursor: pointer;">Speichern</button>';
+            //BUTTON CLOSE
+            edithtml += '<div class="wrapper"><button class="close" onclick="closePopUp()" onmouseover="" style="cursor: pointer;"><i class="fas fa-times"></i></button>';
+            //HEADER
+            edithtml += '<h2>Reservation von ' + data.clientFirstName + ' ' + data.clientLastName + '</h2>';
+            //EMAIL FIELD
+            edithtml += '<h3>Email:</h3><input name="email" type="email" placeholder="E-Mail" value="' + data.email + '" required />'
 
-            var edithtml = '<section id="edit"><button class="delete-button"><i class="fas fa-trash-alt"></i></button><button class="safe-button" onclick="safePopUp()">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2><form id="editform" name="editform" onsubmit="" >';
-
-            var edithtml = '<section id="edit"><button class="delete-button" onmouseover="" style="cursor: pointer;"><i class="fas fa-trash-alt"></i></button><button class="safe-button" onmouseover="" style="cursor: pointer;">Speichern</button><div class="wrapper"><button class="close" onclick="closePopUp()" onmouseover="" style="cursor: pointer;"><i class="fas fa-times"></i></button><h2>Reservation von '+ data.clientFirstName +' '+ data.clientLastName+'</h2>';
             for (i = 0; i < data.tickets.length; i++) {
 
                 var day = data.tickets[i].day;
@@ -81,17 +90,17 @@ function GetItemByEmail(e) {
                 var type = data.tickets[i].type;
 
                 if (type == "Erwachsene" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" name="adult-sa" id="adult-sa" required />';
+                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" class="tickets" name="adult-sa" id="adult-sa" required  data-ticket="Erwachsene" data-Day="Sa"/>';
                 else if (type == "Kind" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" name="child-sa" id="child-sa" required />';
+                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" class="tickets" name="child-sa" id="child-sa" required data-ticket="Kind" data-Day="Sa" />';
                 else if (type == "Kleinkind" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" name="k-child-sa" id="k-child-sa" required />';
+                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" class="tickets" name="k-child-sa" id="k-child-sa" required  data-ticket="Kleinkind" data-Day="Sa"/>';
                 else if (type == "Erwachsene" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" name="adult-so" id="adult-so" required />';
+                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" class="tickets" name="adult-so" id="adult-so" required  data-ticket="Erwachsene" data-Day="So" />';
                 else if (type == "Kind" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" name="child-so" id="child-so" required />';
+                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" class="tickets" name="child-so" id="child-so" required data-ticket="Kind" data-Day="So" />';
                 else if (type == "Kleinkind" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" name="k-child-so" id="k-child-so" required />';
+                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" class="tickets" name="k-child-so" id="k-child-so" required data-ticket="Kleinkind" data-Day="So" />';
             }
             if (data.bemerkung == 'Keine')
                 edithtml += '<h3>Bemerkungen</h3><textarea name="text" rows="1"></textarea></form></div></section>';
@@ -106,43 +115,71 @@ function GetItemByEmail(e) {
 
 
 
-function closePopUp(){
-	
-	//CHECK IF SOMETHING WAS CHANGED
-	var change = 0
-		
-	var inputs = document.querySelectorAll('input[type=number]');
-	
-	for (var i = 0; i < inputs.length; i++) {
+function closePopUp() {
+
+    //CHECK IF SOMETHING WAS CHANGED
+    var change = 0
+
+    var inputs = document.querySelectorAll('input[type=number]');
+
+    for (var i = 0; i < inputs.length; i++) {
         var input = inputs[i];
         var initialInputValue = input.getAttribute('value');
         input.setAttribute('value', input.value);
-        if(initialInputValue != input.value) change = 1;
+        if (initialInputValue != input.value) change = 1;
     }
-    
+
     var textareas = document.querySelectorAll('textarea');
     for (var i = 0; i < textareas.length; i++) {
         var textarea = textareas[i];
         var initialTextareaValue = textarea.innerHTML;
         textarea.innerHTML = textarea.value;
-        if(initialTextareaValue != textarea.innerHTML) change = 1;
+        if (initialTextareaValue != textarea.innerHTML) change = 1;
     }
 
     //IF CHANGE MAKE POPUP
-    if(change == 1){
-	    if (confirm("Willst du die Seite Wirklich verlassen ohne die Änderungen zu speichern ?")) {
-        	document.getElementById('edit').remove();
-    	}
-    }else{
-	    document.getElementById('edit').remove();
-	}
-    	
+    if (change == 1) {
+        if (confirm("Willst du die Seite Wirklich verlassen ohne die Änderungen zu speichern ?")) {
+            document.getElementById('edit').remove();
+        }
+    } else {
+        document.getElementById('edit').remove();
+    }
+
 }
 
-function safePopUp(){
-	document.getElementById("editform").submit();
-}
+function safePopUp(email) {
+    var items = document.getElementsByTagName("tickets");
+    var tickets = [];
+    var url = uri + '/' + email;
 
+    var data = {
+        email: document.getElementsByTagName("email").value,
+        tickets: tickets
+    }
+    for (var i = 0; i < items.length; i++) {
+        var ticket = {
+            type: items[i].getAttribute('data-ticket'),
+            quantity: Number(items[i].value),
+            day: items[i].getAttribute('data-day')
+        };
+        tickets.push(ticket);
+    }
+    fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+}
+function deleteItem(email) {
+    var url = uri + '/' + email;
+
+    fetch(url, {
+        method: 'delete',
+    }).then(res => res.json())
+}
 
 //     WINDOW: LOAD CALL
 
