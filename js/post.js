@@ -30,8 +30,10 @@ function addItem() {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
-        .then(function () {
-            window.location.replace("/formfeedback.html");
-        })
+    }).then(function (myJson) {
+        if (myJson.status == 200)
+            window.location.pathname = "/formfeedback.html";
+        else
+            console.log(myJson.statusText)
+    });
 }

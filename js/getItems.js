@@ -172,9 +172,14 @@ function safePopUp(email) {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-      });
+    }).then(function (myJson) {
+        if (myJson.status == 200) {
+            document.getElementById('edit').remove();
+            GetItems();
+        }
+        else
+            console.log(myJson.statusText)
+    });
 }
 function deleteItem(email) {
     var url = uri + '/' + email;
