@@ -16,7 +16,11 @@ function GetItems() {
                 html += '<td>Kind in Kadetten</td>';
                 html += '<td>' + data[i].kadettLastName + '</td>';
                 html += '<td>' + data[i].kadettFirstName + '</td>';
-                html += '<td>' + data[i].kadettInKader + '</td>';
+                if(data[i].kadettInKader == true)
+                    html += '<td>Ja</td>';
+                else if(data[i].kadettInKader == false)
+                    html += '<td>Nein</td>';
+
 
                 var ticketsObj = {};
                 Object.assign(data[i].tickets, ticketsObj);
