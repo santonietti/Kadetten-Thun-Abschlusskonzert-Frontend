@@ -86,7 +86,9 @@ input[type="checkbox"]{margin-right: 12px!important;}
 .form-block .dayset input{width: 60px; display: inline-block; font-size: 1rem;}
 .form-block .dayset label{width: calc(100% - 61px); display: inline-block;  padding: 10px 0px; border-bottom: 1px solid black; font-size: 1rem;}
 .form-block .dayset input:nth-of-type(odd){margin-right: 0;}
+.form-block .dayset time{font-size: 1rem; font-weight: 700;}
 input[type="number"]{text-align: right; margin-bottom: 20px;}
+
 
 textarea{width: 100%; resize: vertical;}
 input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 20px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
