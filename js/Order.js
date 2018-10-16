@@ -51,7 +51,11 @@ function GetItems() {
                 html += '<td>Kind in Kadetten</td>';
                 html += '<td>' + data[i].kadettLastName + '</td>';
                 html += '<td>' + data[i].kadettFirstName + '</td>';
-                html += '<td>' + data[i].kadettInKader + '</td>';
+                if(data[i].kadettInKader == true)
+                    html += '<td>Ja</td>';
+                else if(data[i].kadettInKader == false)
+                    html += '<td>Nein</td>';
+
 
                 var ticketsObj = {};
                 Object.assign(data[i].tickets, ticketsObj);
@@ -174,12 +178,12 @@ function closePopUp() {
 
     //IF CHANGE MAKE POPUP
     if (change == 1) {
-        if (confirm("Willst du die Seite Wirklich verlassen ohne die Änderungen zu speichern ?")) {
+        if (confirm("Willst du die Seite wirklich verlassen ohne die Änderungen zu speichern ?")) {
             document.getElementById('edit').remove();
         }
-    } else {
-        document.getElementById('edit').remove();
-    }
+	} else {
+	    document.getElementById('edit').remove();
+	}
 
 }
 
@@ -216,6 +220,8 @@ function safePopUp(email) {
             console.log(myJson.statusText)
     });
 }
+
+
 function deleteItem(email) {
     var url = uri + '/' + email;
 
@@ -224,8 +230,23 @@ function deleteItem(email) {
     }).then(res => res.json())
 }
 
+
+
+
+function deleteAll() {
+	console.log('asdf');
+	if (confirm("Willst du wirklich alle Reservationen löschen ?")) {
+            // CODE DELETE ALL
+    }
+}
+
+function AssignDeleteButton(){
+	document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
+}
+
 //     WINDOW: LOAD CALL
 
 window.onload = function () {
     GetItems();
+    AssignDeleteButton()
 }
