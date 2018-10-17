@@ -8,6 +8,7 @@ function addItem() {
     var tickets = [];
     var data = {
         email: getfrom.namedItem("email").value,
+        phone: getfrom.namedItem("tel").value,
         clientLastName: getfrom.namedItem("prename").value,
         clientFirstName: getfrom.namedItem("lastname").value,
         bemerkung: getfrom.namedItem("text").value,
@@ -47,13 +48,16 @@ function GetItems() {
                 html += '<td>' + data[i].clientLastName + '</td>';
                 html += '<td>' + data[i].clientFirstName + '</td>';
                 html += '<td>' + data[i].email + '</td>';
-                html += '<td>Telefon</td>';
-                html += '<td>Kind in Kadetten</td>';
+                html += '<td>' + data[i].phone + '</td>';
+                if (data[i].kadettLastName != null || data[i].kadettFirstName != null)
+                    html += '<td>Ja</td>';
+                else
+                    html += '<td>Nein</td>';
                 html += '<td>' + data[i].kadettLastName + '</td>';
                 html += '<td>' + data[i].kadettFirstName + '</td>';
-                if(data[i].kadettInKader == true)
+                if (data[i].kadettInKader == true)
                     html += '<td>Ja</td>';
-                else if(data[i].kadettInKader == false)
+                else if (data[i].kadettInKader == false)
                     html += '<td>Nein</td>';
 
 
@@ -181,9 +185,9 @@ function closePopUp() {
         if (confirm("Willst du die Seite wirklich verlassen ohne die Änderungen zu speichern ?")) {
             document.getElementById('edit').remove();
         }
-	} else {
-	    document.getElementById('edit').remove();
-	}
+    } else {
+        document.getElementById('edit').remove();
+    }
 
 }
 
@@ -234,14 +238,14 @@ function deleteItem(email) {
 
 
 function deleteAll() {
-	console.log('asdf');
-	if (confirm("Willst du wirklich alle Reservationen löschen ?")) {
-            // CODE DELETE ALL
+    console.log('asdf');
+    if (confirm("Willst du wirklich alle Reservationen löschen ?")) {
+        // CODE DELETE ALL
     }
 }
 
-function AssignDeleteButton(){
-	document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
+function AssignDeleteButton() {
+    document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
 }
 
 //     WINDOW: LOAD CALL
