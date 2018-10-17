@@ -1,6 +1,6 @@
 // CREATE REDACTOR
-// const url = 'https://kadetten-dev.scapp.io/api/Redactor';
-const url = 'https://localhost:44389/api/Redactor';
+const url = 'https://kadetten-dev.scapp.io/api/Redactor';
+// const url = 'https://localhost:44389/api/Redactor';
 
 var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
 

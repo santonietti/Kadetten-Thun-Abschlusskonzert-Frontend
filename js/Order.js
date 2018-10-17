@@ -24,7 +24,7 @@ function addItem() {
         };
         tickets.push(ticket);
     }
-    fetch(url, {
+    fetch(uri, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
