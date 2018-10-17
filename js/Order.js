@@ -252,5 +252,5 @@ function AssignDeleteButton() {
 
 window.onload = function () {
     GetItems();
-    AssignDeleteButton()
+    AssignDeleteButton();
 }
