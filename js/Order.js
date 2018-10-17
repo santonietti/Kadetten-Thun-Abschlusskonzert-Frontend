@@ -238,9 +238,14 @@ function deleteItem(email) {
 
 
 function deleteAll() {
-    console.log('asdf');
-    if (confirm("Willst du wirklich alle Reservationen löschen ?")) {
-        // CODE DELETE ALL
+    if (confirm("Willst du wirklich alle Reservationen löschen ? (1/2)")) {
+        if (confirm("Willst du wirklich alle Reservationen löschen ? (2/2)")) {
+        	//DELETE ALL CODE
+        	fetch(uri, {
+		        method: 'delete',
+		    }).then(res => res.json())
+		    .then(location.reload())
+    	}
     }
 }
 

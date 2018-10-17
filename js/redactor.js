@@ -14,9 +14,20 @@ function createRedactor(){
 	  			toolbar: toolbarOptions
 	  		}
 		});
+		
+		// INSERT CONTENT TO EDITOR
+		var name = document.querySelector('.editor-hidden-input').getAttribute('data-redactor');
+		
+		fetch(url+"/"+name)
+        .then(res => res.json())
+        .then(function (data) {
+	    	var text = data.text;
+			document.querySelector('.ql-editor').innerHTML = text;
+		
+		});
+		
 	}
 	
-	//INSERT CONTENT TO EDITOR
 	
 }
 
@@ -28,13 +39,14 @@ function getRedactor() {
 		
 		for (var i = 0; i < editortexts.length; i++) {
 	        var editortext = editortexts[i];
-	        var name = editortext.getAttribute("data-content");
+	        var name = editortext.getAttribute("data-redactor");
 	        
 	        fetch(url+"/"+name)
-		        .then(res => res.json())
-		        .then(function (data) {
-			     var text = data.text;
-			     console.log(text);
+	        .then(res => res.json())
+	        .then(function (data) {
+			    var text = data.text;
+				console.log(text);
+		    
 			});
     	}
 	}
