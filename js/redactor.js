@@ -2,23 +2,46 @@
 const url = 'https://kadetten-dev.scapp.io/api/Redactor';
 // const url = 'https://localhost:44389/api/Redactor';
 
-var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
 
-var quill = new Quill('#editor', {
-  theme: 'snow',
-  modules: {
-    toolbar: toolbarOptions
-  }
-});
-
-function GetRedactor() {
-  fetch(url+"/intro")
-        .then(res => res.json())
-        .then(function (data) {
-    var p = document.createElement("p")
-    // p.innerHTML = data.text https://codepen.io/k3no/pen/amwpqk
-  });
+function createRedactor(){
+	var editorExists = document.querySelectorAll("#editor");
+	
+	if(editorExists.length > 0) {
+		var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
+		var quill = new Quill('#editor', {
+			theme: 'snow',
+	  		modules: {
+	  			toolbar: toolbarOptions
+	  		}
+		});
+	}
+	
+	//INSERT CONTENT TO EDITOR
+	
 }
+
+
+function getRedactor() {
+	var editortexts = document.querySelectorAll('.editortext');
+	if(editortexts.length > 0) {
+		
+		
+		for (var i = 0; i < editortexts.length; i++) {
+	        var editortext = editortexts[i];
+	        var name = editortext.getAttribute("data-content");
+	        
+	        fetch(url+"/"+name)
+		        .then(res => res.json())
+		        .then(function (data) {
+			     var text = data.text;
+			     console.log(text);
+			});
+    	}
+	}
+    // p.innerHTML = data.text https://codepen.io/k3no/pen/amwpqk
+}
+
+
 function postRedactor() {
   var about = document.querySelector('input[name=intro]');
   about.value = JSON.stringify(quill.getContents());
@@ -36,6 +59,8 @@ function postRedactor() {
     console.log(myJson);
   });
 }
+
 window.onload = function () {
-  GetRedactor();
+	createRedactor();
+	getRedactor();
 }
