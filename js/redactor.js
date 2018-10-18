@@ -36,11 +36,9 @@ function getRedactor() {
 	var editortexts = document.querySelectorAll('.editortext');
 	if(editortexts.length > 0) {
 		
-		
 		for (var i = 0; i < editortexts.length; i++) {
 	        var editortext = editortexts[i];
 	        var name = editortext.getAttribute("data-redactor");
-	        
 	        fetch(url+"/"+name)
 	        .then(res => res.json())
 	        .then(function (data) {
@@ -58,14 +56,15 @@ function postRedactor() {
 	var editor = document.querySelector('.ql-editor');
 	var editorContent = editor.innerHTML;
 	var about = document.querySelector('.editor-hidden-input');
-	//about.value = JSON.stringify(editor.getContents()); // ERROR getContents is not a function
+	var name = about.getAttribute('data-redactor')
+	//about.value = JSON.stringify(editor.getContents());
 	//about.value = JSON.stringify(editorContent);
 	var data = {
-	    Name: about.getAttribute('data-redactor'),
+	    Name: name,
 	    Text: editorContent
 	}
 	
-	fetch(url, {
+	fetch(url/*+"/"+name*/, {
 	    method: 'Put',
 	    body: JSON.stringify(data),
 	    headers: {
@@ -73,8 +72,8 @@ function postRedactor() {
 	    }
 	}).then(function (myJson) {
 	    console.log(myJson);
-	    console.log(about.value);
-	    console.log(editorContent);
+	    //console.log(about.value);
+	    //console.log(editorContent);
 	});
 		
 /*
