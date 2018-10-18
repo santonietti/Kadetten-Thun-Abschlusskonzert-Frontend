@@ -35,7 +35,7 @@ function addItem() {
         if (myJson.status == 200)
             window.location.pathname = "/formfeedback.html";
         else
-            if(myJson.statusText == 'Conflict'){
+            if(myJson.status == 409){
 	            window.location.pathname = "/formemailerror.html";
             }else{
 	            window.location.pathname = "/formerror.html";
