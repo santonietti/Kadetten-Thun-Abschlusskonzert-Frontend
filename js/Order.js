@@ -35,11 +35,18 @@ function addItem() {
         if (myJson.status == 200)
             window.location.pathname = "/formfeedback.html";
         else
-            console.log(myJson.statusText)
+            if(myJson.statusText == 'Conflict'){
+	            window.location.pathname = "/formemailerror.html";
+            }else{
+	            window.location.pathname = "/formerror.html";
+            }
     });
 }
+
+
 function GetItems() {
-	if( document.getElementById("result") > 0){
+	if( document.querySelectorAll("#result").length > 0){
+		console.log('get');
 		fetch(uri)
         .then(res => res.json())
         .then(function (data) {
