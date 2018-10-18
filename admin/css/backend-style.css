@@ -103,7 +103,7 @@ nav ul li a i{font-size: 1.1rem; margin-right: 15px;}
 input{background: #F2F2F2; padding: 7px 15px; border-radius: 3px; color: #585858; transition: all 0.3s ease; border: 1px solid #F2F2F2; margin-bottom: 30px; width: 100%;}
 textarea{resize: vertical; background: #F2F2F2; padding: 7px 15px; border-radius: 3px; color: #585858; transition: all 0.3s ease; border: 1px solid #F2F2F2; margin-bottom: 30px; width: 100%;}
 input:focus{border: 1px solid #585858;}
-input[type="time"], input[type="number"]{width: 90px;}
+input[type="time"], input[type="number"]{width: 120px;}
 
 /*REDACTOR*/
 .ql-toolbar{border-radius: 3px 3px 0px 0px; background: #F2F2F2; border: 1px solid #F2F2F2!important;}

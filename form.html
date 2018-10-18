@@ -72,11 +72,11 @@
 								<time datetime="19:30:00">19.30 Uhr</time>
 							</legend>
 							<label for="adult-sa">Erwachsene 20.–</label>
-							<input name="adult-sa" class="tickets" type="number" required value="0" data-ticket="Erwachsene" data-Day="Sa" id="adult-sa"/>
+							<input name="adult-sa" class="tickets" type="number" required value="0" min="0" data-ticket="Erwachsene" data-Day="Sa" id="adult-sa"/>
 							<label for="child-sa">Kind im Schulalter 5.–</label>
-							<input name="child-sa" class="tickets" type="number" required value="0" data-ticket="Kind" data-Day="Sa" id="child-sa"/>
+							<input name="child-sa" class="tickets" type="number" required value="0" min="0" data-ticket="Kind" data-Day="Sa" id="child-sa"/>
 							<label for="k-child-sa">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-sa" id="k-child-sa" class="tickets" type="number" required value="0" data-ticket="Kleinkind" data-Day="Sa"/>
+							<input name="k-child-sa" id="k-child-sa" class="tickets" type="number" min="0" required value="0" data-ticket="Kleinkind" data-Day="Sa"/>
 						</fieldset>
 						<fieldset class="dayset">
 							<legend>
@@ -84,11 +84,11 @@
 								<time datetime="19:30:00">19.30 Uhr</time>
 							</legend>
 							<label for="adult-so">Erwachsene 20.–</label>
-							<input name="adult-so" id="adult-so" class="tickets" type="number" value="0" required data-ticket="Erwachsene" data-Day="So"/>
+							<input name="adult-so" id="adult-so" class="tickets" type="number" value="0" min="0" required data-ticket="Erwachsene" data-Day="So"/>
 							<label for="child-so">Kind im Schulalter 5.–</label>
-							<input name="child-so" id="child-so" class="tickets" type="number" value="0" required data-ticket="Kind" data-Day="So"/>
+							<input name="child-so" id="child-so" class="tickets" type="number" value="0" min="0" required data-ticket="Kind" data-Day="So"/>
 							<label for="k-child-so">Kinder von Anfängerkursen (Musik oder Tambouren) ohne Auftritt</label>
-							<input name="k-child-so" id="k-child-so" class="tickets" type="number" value="0" required data-ticket="Kleinkind" data-Day="So"/>
+							<input name="k-child-so" id="k-child-so" class="tickets" type="number" min="0" value="0" required data-ticket="Kleinkind" data-Day="So"/>
 						</fieldset>
 					</fieldset>
 					<textarea name="text" placeholder="Bemerkung" rows="1"></textarea>

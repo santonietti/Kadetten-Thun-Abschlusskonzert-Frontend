@@ -39,7 +39,8 @@ function addItem() {
     });
 }
 function GetItems() {
-    fetch(uri)
+	if( document.getElementById("result") > 0){
+		fetch(uri)
         .then(res => res.json())
         .then(function (data) {
             var html = '';
@@ -89,11 +90,14 @@ function GetItems() {
                 html += '<td data-email="' + data[i].email + '" class="edit-icon">' + '<a data-email="' + data[i].email + '" href="#" ><i data-email="' + data[i].email + '" class="fas fa-pencil-alt"></i></a>' + '</td>';
                 html += '</tr>';
             }
+            
             document.getElementById("result").innerHTML = html;
 
             // EDIT ICON FINDER FUNCTION
             AssignEditIcons();
         });
+
+	}
 }
 
 
@@ -133,17 +137,17 @@ function GetItemByEmail(e) {
                 var type = data.tickets[i].type;
 
                 if (type == "Erwachsene" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" class="tickets" name="adult-sa" id="adult-sa" required  data-ticket="Erwachsene" data-Day="Sa"/>';
+                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="adult-sa" id="adult-sa" required  data-ticket="Erwachsene" data-Day="Sa"/>';
                 else if (type == "Kind" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" class="tickets" name="child-sa" id="child-sa" required data-ticket="Kind" data-Day="Sa" />';
+                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="child-sa" id="child-sa" required data-ticket="Kind" data-Day="Sa" />';
                 else if (type == "Kleinkind" && day == "Sa")
-                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" class="tickets" name="k-child-sa" id="k-child-sa" required  data-ticket="Kleinkind" data-Day="Sa"/>';
+                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="k-child-sa" id="k-child-sa" required  data-ticket="Kleinkind" data-Day="Sa"/>';
                 else if (type == "Erwachsene" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" value="' + quantity + '" class="tickets" name="adult-so" id="adult-so" required  data-ticket="Erwachsene" data-Day="So" />';
+                    edithtml += '<h3>Ticket Samstag Erwachsene</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="adult-so" id="adult-so" required  data-ticket="Erwachsene" data-Day="So" />';
                 else if (type == "Kind" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" value="' + quantity + '" class="tickets" name="child-so" id="child-so" required data-ticket="Kind" data-Day="So" />';
+                    edithtml += '<h3>Ticket Samstag Kinder im Schulalter</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="child-so" id="child-so" required data-ticket="Kind" data-Day="So" />';
                 else if (type == "Kleinkind" && day == "So")
-                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" value="' + quantity + '" class="tickets" name="k-child-so" id="k-child-so" required data-ticket="Kleinkind" data-Day="So" />';
+                    edithtml += '<h3>Ticket Samstag Kinder in Vorkursen</h3><input type="number" min="0" value="' + quantity + '" class="tickets" name="k-child-so" id="k-child-so" required data-ticket="Kleinkind" data-Day="So" />';
             }
             if (data.bemerkung == 'Keine')
                 edithtml += '<h3>Bemerkungen</h3><textarea name="text" rows="1"></textarea></form></div></section>';
@@ -250,7 +254,10 @@ function deleteAll() {
 }
 
 function AssignDeleteButton() {
-    document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
+	if(document.getElementById('delete-all') > 0){
+		document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
+	}
+    
 }
 
 //     WINDOW: LOAD CALL

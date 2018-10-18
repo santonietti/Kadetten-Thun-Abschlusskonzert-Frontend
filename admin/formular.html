@@ -59,33 +59,36 @@
 		</header>
 		
 		<main>
-			<button class="safe-button">Speichern</button>
-			<div class="wrapper">
-				<a id="form-active-button" href="#">
-					<span class="lightswitch"></span>
-					<p>Formular Aktivieren</p>
-				</a>
-				<h2>Formular</h2>
-				<h3>Titel erstes Konzert</h3>
-				<p class="field-desc">Konzert, Wochentag, Datum, Bemerkungen</p>
-				<input type="text" value="" name="title-concert-1" required />
-				
-				<h3>Zeit erstes Konzert</h3>
-				<p class="field-desc">Zeit Konzertbeginn</p>
-				<input type="time" value="" name="time-concert-1" required />
-				
-				<h3>Titel zweites Konzert</h3>
-				<p class="field-desc">Konzert, Wochentag, Datum, Bemerkungen</p>
-				<input type="text" value="" name="title-concert-2" required />
-				
-				<h3>Zeit zweites Konzert</h3>
-				<p class="field-desc">Zeit Konzertbeginn</p>
-				<input type="time" value="" name="time-concert-2" required />
-				
-				<h3>Formular Rückmeldung</h3>
-				<p class="field-desc">Dieser Text erscheint wenn das Formular abgeschickt wurde</p>
-				<div id="editor"></div>
-			</div>
+			<form id="formularform" name="formularform" onsubmit="postRedactor(); return false">
+				<input type="submit" class="safe-button" value="Speichern">
+				<div class="wrapper">
+					<a id="form-active-button" href="#">
+						<span class="lightswitch"></span>
+						<p>Formular Aktivieren</p>
+					</a>
+					<h2>Formular</h2>
+					<h3>Titel erstes Konzert</h3>
+					<p class="field-desc">Konzert, Wochentag, Datum, Bemerkungen</p>
+					<input type="text" value="" name="title-concert-1" required />
+					
+					<h3>Zeit erstes Konzert</h3>
+					<p class="field-desc">Zeit Konzertbeginn</p>
+					<input type="time" value="" name="time-concert-1" required />
+					
+					<h3>Titel zweites Konzert</h3>
+					<p class="field-desc">Konzert, Wochentag, Datum, Bemerkungen</p>
+					<input type="text" value="" name="title-concert-2" required />
+					
+					<h3>Zeit zweites Konzert</h3>
+					<p class="field-desc">Zeit Konzertbeginn</p>
+					<input type="time" value="" name="time-concert-2" required />
+					
+					<h3>Formular Rückmeldung</h3>
+					<p class="field-desc">Dieser Text erscheint wenn das Formular abgeschickt wurde</p>
+					<input name="formfeedback" data-redactor="formfeedback" type="hidden" class="editor-hidden-input"/>
+					<div id="editor"></div>
+				</div>
+			</form>
 		</main>
 		
 		<!-- load scripts -->
