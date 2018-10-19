@@ -87,8 +87,8 @@ nav ul li a i{font-size: 1.1rem; margin-right: 15px;}
 #registration-live-panel a{color: white;}
 #registration-live-panel #registration-live p{display: inline; margin-left: 10px; margin-bottom: 0; vertical-align: middle;}
 #registration-live-panel .lightswitch{-webkit-transform: translateY(-11px);transform: translateY(-11px);}
-.lightswitch{display: inline-block; height: 15px; width: 30px; border-radius: 30px; background: #E53946; position: relative; vertical-align: middle;}
-.lightswitch.active{background-color: #C2A779;}
+.lightswitch{display: inline-block; height: 15px; width: 30px; border-radius: 30px; background: #E53946; position: relative; vertical-align: middle; transition: all 0.3s ease;}
+.lightswitch.active{background-color: #C2A779; transition: all 0.3s ease;}
 .lightswitch:before{content:""; line-height: 0; font-size: 0; display: block; position: absolute; background: white; height: 15px; width: 15px; border-radius: 30px; top: 0; left: 0; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
 .lightswitch.active:before{left: 15px;}
 
