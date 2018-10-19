@@ -100,6 +100,10 @@ input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #
 .feedback-a:hover{background: none; border: 2px solid #C2A779; color: #C2A779; -webkit-transform: scale(1.03); transform: scale(1.03); text-decoration: none;}
 
 
+/*** NOSRCIPT ****/
+.noscript{width: 100%; height: 100%; position: fixed; top: 0; left: 0; background: rgba(242, 242, 242, 0.9); z-index: 5;}
+.noscript div{position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%); padding: 30px; background: white; border-radius: 3px; max-width: 600px; width: calc(100% - 60px);}
+
 
 	
 	
