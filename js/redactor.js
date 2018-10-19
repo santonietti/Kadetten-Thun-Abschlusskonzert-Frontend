@@ -116,7 +116,6 @@ function postFormularStatus() {
 	}).then(function (myJson) {
 		if (myJson.status == 200) {
 			button.setAttribute("data-status-active", status)
-			GetformularStatus();
 			if (status == true)
 				document.querySelector('#form-active-button > span').classList.add("active");
 			else if (status == false)
@@ -129,16 +128,10 @@ function GetformularStatus() {
 		.then(res => res.json())
 		.then(function (data) {
 			document.querySelector('#form-active-button').setAttribute("data-status-active", data)
-			if (data == true) {
+			if (data == true)
 				document.querySelector('#form-active-button > span').classList.add("active");
-				document.querySelector('#registration-live > span').classList.add("active")
-			}
 			else if (data == false)
-			{
 				document.querySelector('#form-active-button > span').classList.remove("active");
-				document.querySelector('#registration-live > span').classList.remove("active")
-			}
-
 		});
 
 }
