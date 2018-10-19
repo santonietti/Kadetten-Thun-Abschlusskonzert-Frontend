@@ -10,19 +10,17 @@ menu, footer, header, nav, section, summary, time, mark, audio, video {margin: 0
 main, article, aside, canvas, figure, figure img, figcaption, hgroup,
 footer, header, nav, section, audio, video {display: block;}
 
-a{text-decoration: none; color: inherit; transition: .5s;}
+a{text-decoration: none; color: inherit; -webkit-transition: .5s; transition: .5s;}
 a img {border: 0;}
 
 figure {position: relative;}
 figure img {width: 100%;}
 
-img{ -moz-user-select: none; -webkit-user-drag: none;}
-
 label{cursor: pointer;}
 
 textarea, input, button, select{background: none; border: none; border-radius: 0; font: inherit; -webkit-appearance: none;}
 
-*{-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box; margin: 0; padding: 0; outline: none;}
+*{box-sizing: border-box; margin: 0; padding: 0; outline: none;}
 
 html{width: 100%; height: 100%; min-height: 100%}
 
@@ -64,23 +62,26 @@ main{background: #F2F2F2; min-height: calc(100vh - 102px);}
 /**** INTRO *****/
 body.intro{padding-bottom: 120px;}
 footer{padding-top: 30px; background: white; position: fixed; bottom: 0; left: 0; width: 100%; height: 120px;}
-footer a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin: 0 auto; width: fit-content; transition: all 0.5s ease; border: 2px solid white;}
-footer a:hover{background: white; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
+footer a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin: 0 auto; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; border: 2px solid white;}
+footer a:hover{background: white; border: 2px solid #C2A779; color: #C2A779; -webkit-transform: scale(1.03); transform: scale(1.03); text-decoration: none;}
 #map{width: 100%; height: 400px; background: gray;}
 #map #iframe-map{height: 100%; width: 100%; border: none;}
 
 /**** FORM *****/	
 body.form footer{display: none;}
 fieldset{margin-bottom: 40px;}
-input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea{display: inline-block; padding: 10px 0px; -webkit-appearance: none; background: none; color: black; border-bottom: 1px solid black; width: calc(50% - 20px); margin-bottom: 20px; transition: all 0.3s ease;}
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], textarea{display: inline-block; padding: 10px 0px; -webkit-appearance: none; background: none; color: black; border-bottom: 1px solid black; width: calc(50% - 20px); margin-bottom: 20px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
 input[type="text"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="number"]:hover, textarea:hover{border-bottom: 2px solid black; margin-bottom: 19px;}
 input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="number"]:focus, textarea:focus{border-bottom: 3px solid #C2A779; margin-bottom: 18px;}
 .form-block input:nth-of-type(odd){margin-right: 36px;}
-::placeholder {color: black; opacity: 1;}
+::-webkit-input-placeholder {color: black; opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
+::-moz-placeholder {color: black; opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
+:-ms-input-placeholder {color: black; opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
+::placeholder {color: black; opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";}
 input[type="checkbox"]{-webkit-appearance: checkbox;}
 input[type="checkbox"]{margin-right: 12px!important;}
-#invisibleform{height: 0; overflow: hidden; opacity: 0; transition: all 0.3s ease;}
-#child-checkbox:checked ~ #invisibleform{height: 85px; opacity: 1; overflow: visible;}
+#invisibleform{height: 0; overflow: hidden; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
+#child-checkbox:checked ~ #invisibleform{height: 85px; opacity: 1; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; overflow: visible;}
 .form-block .dayset{width: calc(50% - 20px); display: inline-block; font-size: 0; margin-bottom: 0;}
 .form-block .dayset:first-of-type{margin-bottom: 40px;}
 .form-block .dayset:nth-of-type(odd){margin-right: 36px;}
@@ -92,11 +93,11 @@ input[type="number"]{text-align: right; margin-bottom: 20px;}
 
 
 textarea{width: 100%; resize: vertical;}
-input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 20px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
-input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
+input[type="submit"]{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 20px; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
+input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #C2A779; -webkit-transform: scale(1.03); transform: scale(1.03); text-decoration: none;}
 
-.feedback-a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: fit-content; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
-.feedback-a:hover{background: none; border: 2px solid #C2A779; color: #C2A779; transform: scale(1.03); text-decoration: none;}
+.feedback-a{padding: 7px 20px; background: #C2A779; color: white; display: block; margin-top: 40px; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; -webkit-transition: all 0.5s ease; transition: all 0.5s ease; border: 2px solid #F2F2F2;}
+.feedback-a:hover{background: none; border: 2px solid #C2A779; color: #C2A779; -webkit-transform: scale(1.03); transform: scale(1.03); text-decoration: none;}
 
 
 
@@ -104,7 +105,7 @@ input[type="submit"]:hover{background: none; border: 2px solid #C2A779; color: #
 	
 	
 
-.cf:after{content: "."; font-size: 0; line-height: 0; clear: both; display: block; visibility: hidden; opacity: 0;}
+.cf:after{content: "."; font-size: 0; line-height: 0; clear: both; display: block; visibility: hidden; opacity: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";}
 /*** RESPONSIVE MEDIA QUERIES ***/
 
 @media all and (max-width: 1150px){
