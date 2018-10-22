@@ -54,18 +54,28 @@ function getRedactor() {
 
 function postRedactor() {
 	var editor = document.querySelector('.ql-editor');
-	var editorContent = editor.innerHTML;
-	var about = document.querySelector('.editor-hidden-input');
-	var name = about.getAttribute('data-redactor')
-	//about.value = JSON.stringify(editor.getContents());
-	//about.value = JSON.stringify(editorContent);
+	var UrlindexOf = document.URL.indexOf("intro.html");
+	var datas = [];
+	var content = editor.innerHTML;
 
-	var data = [];
-	for (i = 0; i > name; i++) {
+
+	if (UrlindexOf > 0) {
+		var inputs = document.querySelector('.editor-hidden-input');
+	}
+	else
+		var inputs = document.querySelectorAll('#formularform > div > input');
+
+	for (x = 0; x < inputs.length; x++) {
+		var data = {};
+		var name = inputs[x].getAttribute('data-redactor');
+		if (!inputs[x].classList.contains("editor-hidden-input"))
+			content = inputs[x].value;
+
 		data = {
 			Name: name,
-			Text: editorContent
+			Text: content
 		}
+		datas.push(data);
 	}
 
 	fetch(url, {
@@ -129,22 +139,22 @@ function GetformularStatus() {
 		.then(res => res.json())
 		.then(function (data) {
 			var UrlindexOf = document.URL.indexOf("intro.html")
-			if(UrlindexOf >= 0)
+			if (UrlindexOf >= 0)
 				document.querySelector('#form-active-button').setAttribute("data-status-active", data)
-			if (data == true)
-			{
-				if(UrlindexOf >= 0)
+			if (data == true) {
+				if (UrlindexOf >= 0) {
 					document.querySelector('#form-active-button > span').classList.add("active");
-					document.querySelector('#form-active-button > p'). innerHTML = "Formular deaktivieren"
+					document.querySelector('#form-active-button > p').innerHTML = "Formular deaktivieren";
+				}
 				document.querySelector('#registration-live > span').classList.add("active");
 				document.querySelector('#registration-live > p').innerHTML = "Formular aktiv";
 
 			}
-			else if (data == false)
-			{
-				if(UrlindexOf >= 0)
+			else if (data == false) {
+				if (UrlindexOf >= 0) {
 					document.querySelector('#form-active-button > span').classList.remove("active");
-					document.querySelector('#form-active-button > p'). innerHTML = "Formular aktivieren"
+					document.querySelector('#form-active-button > p').innerHTML = "Formular aktivieren";
+				}
 
 				document.querySelector('#registration-live > span').classList.remove("active");
 				document.querySelector('#registration-live > p').innerHTML = "Formular inaktiv";
