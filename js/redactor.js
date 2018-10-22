@@ -128,16 +128,26 @@ function GetformularStatus() {
 	fetch(url + "/active")
 		.then(res => res.json())
 		.then(function (data) {
-			document.querySelector('#form-active-button').setAttribute("data-status-active", data)
+			var UrlindexOf = document.URL.indexOf("intro.html")
+			if(UrlindexOf >= 0)
+				document.querySelector('#form-active-button').setAttribute("data-status-active", data)
 			if (data == true)
 			{
-				document.querySelector('#form-active-button > span').classList.add("active");
-				document.querySelector('#registration-live > span').classList.add("active")
+				if(UrlindexOf >= 0)
+					document.querySelector('#form-active-button > span').classList.add("active");
+					document.querySelector('#form-active-button > p'). innerHTML = "Formular deaktivieren"
+				document.querySelector('#registration-live > span').classList.add("active");
+				document.querySelector('#registration-live > p').innerHTML = "Formular aktiv";
+
 			}
 			else if (data == false)
 			{
-				document.querySelector('#form-active-button > span').classList.remove("active");
-				document.querySelector('#registration-live > span').classList.remove("active")
+				if(UrlindexOf >= 0)
+					document.querySelector('#form-active-button > span').classList.remove("active");
+					document.querySelector('#form-active-button > p'). innerHTML = "Formular aktivieren"
+
+				document.querySelector('#registration-live > span').classList.remove("active");
+				document.querySelector('#registration-live > p').innerHTML = "Formular inaktiv";
 			}
 		});
 
