@@ -51,6 +51,9 @@ function getRedactor() {
 	// p.innerHTML = data.text https://codepen.io/k3no/pen/amwpqk
 }
 
+function getConcert1(){
+	
+}
 
 function postRedactor() {
 	var editor = document.querySelector('.ql-editor');
@@ -80,7 +83,7 @@ function postRedactor() {
 
 	fetch(url, {
 		method: 'Put',
-		body: JSON.stringify(data),
+		body: JSON.stringify(datas),
 		headers: {
 			'Content-Type': 'application/json'
 		}
