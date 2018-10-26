@@ -1,4 +1,4 @@
-// CREATE REDACTOR
+
 const url = 'https://kadetten-dev.scapp.io/api/redactor';
 // const url = 'https://localhost:44389/api/redactor';
 var UrlindexOfIndex = document.URL.indexOf("index.html");
@@ -15,8 +15,8 @@ function GetformularStatus() {
 				document.querySelector('#form-active-button').setAttribute("data-status-active", data)
 			if (data == true) {
 				if (UrlindexOfIntro >= 0) {
-					document.querySelector('#form-active-button > span').classList.add("active");
-					document.querySelector('#form-active-button > p').innerHTML = "Formular deaktivieren";
+					//document.querySelector('#form-active-button > span').classList.add("active");
+					//document.querySelector('#form-active-button > p').innerHTML = "Formular deaktivieren";
 					if (data == true) {
 						document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
 						createRedactor();
@@ -26,6 +26,10 @@ function GetformularStatus() {
 						createRedactor();
 					}
 
+				}
+				if (UrlindexOfFormular > 0) {
+					document.querySelector('#form-active-button > span').classList.add("active");
+					document.querySelector('#form-active-button > p').innerHTML = "Formular deaktivieren";
 				}
 				if (UrlindexOfIndex > 0) {
 					document.querySelector('body > main > article').setAttribute('data-redactor', "intro-active");
@@ -62,6 +66,8 @@ function GetformularStatus() {
 			}
 		});
 }
+
+
 function createRedactor() {
 	var editorExists = document.querySelectorAll("#editor");
 	var editorExistAlredy = document.getElementsByClassName("ql-editor");
@@ -196,6 +202,8 @@ function getRedactorInForm(name, selector) {
 document.addEventListener('DOMContentLoaded', function() {
 	getRedactor();
  }, false);
+ 
+ 
 window.onload = function () {
 	GetformularStatus();
 	// 
