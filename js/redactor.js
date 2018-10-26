@@ -33,8 +33,12 @@ function createRedactor() {
 
 
 function getRedactor() {
-	var editortexts = document.querySelectorAll('.editortext');
-	if (editortexts.length > 0) {
+	var UrlindexOfIntro = document.URL.indexOf("intro.html");
+	var UrlindexOfIndex = document.URL.indexOf("index.html");
+	var UrlindexOfForm = document.URL.indexOf("form.html");
+
+	if (UrlindexOfForm > 0) {
+		var editortexts = document.querySelectorAll('#formularform > div > input');
 
 		for (var i = 0; i < editortexts.length; i++) {
 			var editortext = editortexts[i];
@@ -42,25 +46,26 @@ function getRedactor() {
 			fetch(url + "/" + name)
 				.then(res => res.json())
 				.then(function (data) {
-					var text = data.text;
-					editortext.innerHTML = text
-
+					editortext.value = data.text;
 				});
+
 		}
 	}
-	// p.innerHTML = data.text https://codepen.io/k3no/pen/amwpqk
-}
-
-function getConcert1(){
-	
+	else /*(UrlindexOfIndex > 0)*/ {
+		var editortext = document.querySelector('.editortext');
+		var name = editortext.getAttribute("data-redactor");
+		fetch(url + "/" + name)
+			.then(res => res.json())
+			.then(function (data) {
+				editortext.innerHTML = data.text;
+			});
+	}
 }
 
 function postRedactor() {
 	var editor = document.querySelector('.ql-editor');
 	var UrlindexOf = document.URL.indexOf("intro.html");
 	var datas = [];
-	var content = editor.innerHTML;
-
 
 	if (UrlindexOf > 0) {
 		var inputs = document.querySelector('.editor-hidden-input');
@@ -71,8 +76,11 @@ function postRedactor() {
 	for (x = 0; x < inputs.length; x++) {
 		var data = {};
 		var name = inputs[x].getAttribute('data-redactor');
-		if (!inputs[x].classList.contains("editor-hidden-input"))
+		if (inputs[x].classList.contains("editor-hidden-input"))
+			var content = editor.innerHTML;
+		else
 			content = inputs[x].value;
+
 
 		data = {
 			Name: name,
@@ -89,28 +97,7 @@ function postRedactor() {
 		}
 	}).then(function (myJson) {
 		console.log(myJson);
-		//console.log(about.value);
-		//console.log(editorContent);
 	});
-
-	/*
-		var about = document.querySelector('input[name=intro]');
-		about.value = JSON.stringify(quill.getContents());
-		var data = {
-			Name: about.getAttribute('data-redactor'),
-			Text: about.value
-		}
-		fetch(url, {
-			method: 'Put',
-			body: JSON.stringify(data),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}).then(function (myJson) {
-			console.log(myJson);
-		});
-	  
-		*/
 }
 function postFormularStatus() {
 	var button = document.querySelector('#form-active-button');
@@ -165,8 +152,26 @@ function GetformularStatus() {
 		});
 
 }
+function getRedactorInForm(name, selector) {
+	var insertElement = document.querySelector(selector);
+	fetch(url + "/" + name)
+		.then(res => res.json())
+		.then(function (data) {
+			insertElement.innerHTML = data.text;
+		});
+}
 window.onload = function () {
-	createRedactor();
+	var UrlindexOfform = document.URL.indexOf("form.html");
+	var UrlindexOfadmin = document.URL.indexOf("admin");
 	getRedactor();
-	GetformularStatus();
+	if (UrlindexOfadmin > 0) {
+		GetformularStatus();
+		createRedactor();
+	}
+	if (UrlindexOfform > 0) {
+		getRedactorInForm('title-concert-1', '#ticketform > fieldset:nth-child(3) > fieldset:nth-child(1) > legend > h3');
+		getRedactorInForm('time-concert-1', '#ticketform > fieldset:nth-child(3) > fieldset:nth-child(1) > legend > time');
+		getRedactorInForm('title-concert-2', '#ticketform > fieldset:nth-child(3) > fieldset:nth-child(2) > legend > h3');
+		getRedactorInForm('time-concert-2', '#ticketform > fieldset:nth-child(3) > fieldset:nth-child(2) > legend > time');
+	}
 }
