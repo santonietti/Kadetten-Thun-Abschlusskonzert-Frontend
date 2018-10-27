@@ -3,6 +3,7 @@
 const url = 'https://kadetten-dev.scapp.io/api/redactor';
 var UrlindexOfFormular = document.URL.indexOf("formular.html");
 var UrlindexOfIntro = document.URL.indexOf("intro.html");
+var UrlindexOfReservationen = document.URL.indexOf("reservationen.html");
 
 
 
@@ -25,7 +26,6 @@ function GetformularStatus() {
 				}
 				
 				if (UrlindexOfIntro > 0) {
-					console.log(UrlindexOfIntro)
 					document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
 				}
 
@@ -42,7 +42,6 @@ function GetformularStatus() {
 				}
 				
 				if (UrlindexOfIntro > 0) {
-					console.log(UrlindexOfIntro)
 					document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-inactive");
 				}
 			}
@@ -56,58 +55,35 @@ function GetformularStatus() {
 function createRedactor() {
 	var editorExists = document.querySelectorAll("#editor");
 	var editorExistAlredy = document.getElementsByClassName("ql-editor");
-	var name = document.querySelector('.editor-hidden-input').getAttribute('data-redactor');
-	if (name != 0) {
-
-		if (editorExists.length > 0 && editorExistAlredy.length == 0) {
-			var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
-			var quill = new Quill('#editor', {
-				theme: 'snow',
-				modules: {
-					toolbar: toolbarOptions
-				}
-			});
-		}
-
-		fetch(url + "/" + name)
-			.then(res => res.json())
-			.then(function (data) {
-				var text = data.text;
-				document.querySelector('.ql-editor').innerHTML = text;
-
-			});
-		if (UrlindexOfFormular > 0)
-			getRedactor();
-
-	}
-}
-
-
-function getRedactor() {
-	/*if (UrlindexOfForm > 0 || UrlindexOfFormular > 0) {
-		var editortexts = document.querySelectorAll('#formularform > div > input');
-		//Sandro hilfeee wieso füerts nur bim letstä for z fetch us???? (nur ihr formular ahsicht)
-		for (var i = 0; i < editortexts.length; i++) {
-			var editortext = editortexts[i];
-			var name = editortext.getAttribute("data-redactor");
+	if(document.querySelectorAll('.editor-hidden-input').length > 0){
+		var name = document.querySelector('.editor-hidden-input').getAttribute('data-redactor');
+		if (name != 0) {
+	
+			if (editorExists.length > 0 && editorExistAlredy.length == 0) {
+				var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
+				var quill = new Quill('#editor', {
+					theme: 'snow',
+					modules: {
+						toolbar: toolbarOptions
+					}
+				});
+			}
+	
 			fetch(url + "/" + name)
 				.then(res => res.json())
 				.then(function (data) {
-					editortext.value = data.text;
+					var text = data.text;
+					document.querySelector('.ql-editor').innerHTML = text;
+	
 				});
-
+				
+			//if (UrlindexOfFormular > 0)
+				//getRedactor();
+			
 		}
 	}
-	else if (UrlindexOfIndex > 0) {
-		var editortext = document.querySelector('body > main > article');
-		var name = editortext.getAttribute("data-redactor");
-		fetch(url + "/" + name)
-			.then(res => res.json())
-			.then(function (data) {
-				editortext.innerHTML = data.text;
-			});
-	}*/
 }
+
 
 function postRedactor() {
 	var editor = document.querySelector('.ql-editor');
@@ -143,7 +119,7 @@ function postRedactor() {
 			'Content-Type': 'application/json'
 		}
 	}).then(function (myJson) {
-		console.log(myJson);
+	//	console.log(myJson);
 	});
 }
 
@@ -202,4 +178,5 @@ window.onload = function () {
 		getConcertInfo('title-concert-2');
 		getConcertInfo('time-concert-2');
 	}
+	
 }

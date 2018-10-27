@@ -271,7 +271,12 @@ function AssignDeleteButton() {
 
 //     WINDOW: LOAD CALL
 
-window.onload = function () {
+/*window.onload = function () {
     GetItems();
     AssignDeleteButton();
-}
+}*/
+
+document.addEventListener('DOMContentLoaded', function() {
+   	GetItems();
+    AssignDeleteButton();
+}, false);
