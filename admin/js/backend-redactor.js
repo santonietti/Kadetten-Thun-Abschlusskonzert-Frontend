@@ -1,10 +1,11 @@
+// THIS FILE IS USED IN BACKEND FORMULAR AND INTRO PAGE
 
 const url = 'https://kadetten-dev.scapp.io/api/redactor';
 // const url = 'https://localhost:44389/api/redactor';
 var UrlindexOfIndex = document.URL.indexOf("index.html");
 var UrlindexOfForm = document.URL.indexOf("form.html");
 var UrlindexOfFormular = document.URL.indexOf("formular.html");
-var UrlindexOfIntro = document.URL.indexOf("intro.html")
+var UrlindexOfIntro = document.URL.indexOf("intro.html");
 var UrlindexOfadmin = document.URL.indexOf("admin");
 
 function GetformularStatus() {
@@ -161,6 +162,7 @@ function postRedactor() {
 		console.log(myJson);
 	});
 }
+
 function postFormularStatus() {
 	var button = document.querySelector('#form-active-button');
 	var status = button.getAttribute('data-status-active');
