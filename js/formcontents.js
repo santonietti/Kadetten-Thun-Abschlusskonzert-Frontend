@@ -16,8 +16,7 @@ function GetformularStatus() {
 
 			}
 			else if (data == false){
-				var form = document.querySelector('form');
-				form.parentNode.removeChild(form)
+				document.querySelector('.content').innerHTML = '<h2>Die Reservation ist momentan nicht verfügber</h2>'
 			}
 		});
 }

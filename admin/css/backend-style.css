@@ -57,7 +57,7 @@ header{width: 200px; background: #303030; position: fixed; left: 0; top: 0; heig
 main{background: #F2F2F2; min-height: 100%; min-height: 100vh; margin-left: 200px; padding: 90px 30px 30px 60px;}
 .download-button{background: white; padding: 7px 20px; color: #585858; position: fixed; top: 30px; right: 90px; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
 #delete-all{background: white; padding: 7px 20px; color: #585858; position: fixed; bottom: 30px; left: 230px; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease;}
-.safe-button{background: #E53946; padding: 7px 20px; color: white; position: fixed; top: 30px; right: 60px; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; border: none;}
+.safe-button{background: #E53946; padding: 7px 20px; color: white; position: fixed; top: 30px; right: 60px; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; border: none; z-index: 2;}
 .safe-button:focus{border: none;}
 .delete-button{background: white; padding: 7px 20px; color: #585858; position: fixed; bottom: 30px; right: 60px; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; font-size: 1rem;}
 .safe-button:hover, .download-button:hover{-webkit-transform: scale(1.1);transform: scale(1.1); text-decoration: none; border: none;}
