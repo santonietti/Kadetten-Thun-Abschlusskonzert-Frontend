@@ -147,11 +147,15 @@ td.edit-icon i{color: #E53946; font-size: 1.2rem;}
 }
 
 /**** Login *****/
-.body-login main{margin-left: 0;}
-.body-login main #logo{width: 160px; max-width: 100%;}
-.body-login main form{margin-top: 30px;}
-.body-login main form input{background: white; margin-bottom: 10px; position: relative;}
-.body-login main form input[type="submit"]{background: #E53946; padding: 7px 20px; color: white; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; font-size: 1rem; width: fit-content;}
+.body-login{background: #F2F2F2; min-height: 100%; min-height: 100vh; padding: 30px 30px 30px 30px;}
+.body-login main{margin-left: 0; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); height: auto; width: auto; padding: 0; display: block; min-height: 0px;}
+.body-login main #logo{width: 100%; max-width: 160px; position: relative; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%);}
+.body-login main form{margin-top: 30px; width: 100%; max-width: 260px; }
+.body-login main form input{background: white; margin-bottom: 5px; position: relative;}
+.body-login main form input[type="submit"]{background: #E53946; padding: 7px 20px; color: white; border-radius: 3px; -webkit-transition: all 0.3s ease; transition: all 0.3s ease; font-size: 1rem; width: -webkit-fit-content; width: -moz-fit-content; width: fit-content; left: 50%; -webkit-transform: translateX(-50%); transform: translateX(-50%); margin-top: 15px; border: none; cursor: pointer;}
+.body-login main form input[type="submit"]:focus{border: none;}
+.body-login main form input[type="submit"]:hover{-webkit-transform: scale(1.1) translateX(-47%);transform: scale(1.1) translateX(-47%); text-decoration: none; border: none;}
+
 
 
 
