@@ -59,7 +59,7 @@ function GetItems() {
                 html += '<td>' + data[i].clientFirstName + '</td>';
                 html += '<td>' + data[i].email + '</td>';
                 html += '<td>' + data[i].phone + '</td>';
-                if (data[i].kadettLastName != null || data[i].kadettFirstName != null)
+                if (data[i].kadettLastName != "" || data[i].kadettFirstName != "")
                     html += '<td>Ja</td>';
                 else
                     html += '<td>Nein</td>';
