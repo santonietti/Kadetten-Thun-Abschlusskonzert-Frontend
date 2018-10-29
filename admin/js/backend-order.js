@@ -1,7 +1,7 @@
 // THIS FILE ONLY GETS USED BY THE BACKEND RESERVATIONEN PAGE
 
-// const uri = 'https://kadetten-dev.scapp.io/api/order';
-const uri = 'https://localhost:44389/api/order';
+const uri = 'https://kadetten-dev.scapp.io/api/order';
+// const uri = 'https://localhost:44389/api/order';
 function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
         console.log('get');
