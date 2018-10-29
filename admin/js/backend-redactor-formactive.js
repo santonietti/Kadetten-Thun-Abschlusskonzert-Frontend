@@ -70,11 +70,7 @@ function createRedactor() {
 			}
 
 			fetch(url + "/" + name)
-				.then((function (myJson) {
-					if (myJson.status == 401) {
-						window.location.pathname = "/admin/login.html";
-					}
-				}))
+			.then((res => res.json()))
 				.then(function (data) {
 					var text = data.text;
 					document.querySelector('.ql-editor').innerHTML = text;

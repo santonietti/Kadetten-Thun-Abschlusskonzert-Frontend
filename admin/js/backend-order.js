@@ -6,11 +6,7 @@ function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
         console.log('get');
         fetch(uri)
-            .then((function (myJson) {
-                if (myJson.status == 401) {
-                    window.location.pathname = "/admin/login.html";
-                }
-            }))
+            .then((res => res.json()))
             .then(function (data) {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
@@ -65,7 +61,6 @@ function GetItems() {
                 // EDIT ICON FINDER FUNCTION
                 AssignEditIcons();
             });
-
     }
 }
 
@@ -84,11 +79,7 @@ function GetItemByEmail(e) {
     const url = uri + '/' + email;
 
     fetch(url)
-        .then((function (myJson) {
-            if (myJson.status == 401) {
-                window.location.pathname = "/admin/login.html";
-            }
-        }))
+        .then((res => res.json()))
         .then(function (data) {
 
             var edithtml = '<section id="edit">';
@@ -252,4 +243,14 @@ function AssignDeleteButton() {
 document.addEventListener('DOMContentLoaded', function () {
     GetItems();
     AssignDeleteButton();
+    getCookie();
 }, false);
+
+function getCookie(){
+    var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
+    var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
+
+    user = username ? username[2] : null;
+    password = pw ? pw[2] : null;
+    console.log(user, password)
+}
