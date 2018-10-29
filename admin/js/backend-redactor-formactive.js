@@ -15,50 +15,50 @@ function GetformularStatus() {
 		.then(function (data) {
 			if (UrlindexOfFormular >= 0)
 				document.querySelector('#form-active-button').setAttribute("data-status-active", data)
-				
+
 			if (data == true) {
 				document.querySelector('#registration-live > span').classList.add("active");
 				document.querySelector('#registration-live > p').innerHTML = "Formular aktiv";
-				
+
 				if (UrlindexOfFormular > 0) {
 					document.querySelector('#form-active-button > span').classList.add("active");
 					document.querySelector('#form-active-button > p').innerHTML = "Formular deaktivieren";
 				}
-				
+
 				if (UrlindexOfIntro > 0) {
 					document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
 				}
 
-				
+
 
 			}
 			else if (data == false) {
 				document.querySelector('#registration-live > span').classList.remove("active");
 				document.querySelector('#registration-live > p').innerHTML = "Formular inaktiv";
-				
+
 				if (UrlindexOfFormular > 0) {
 					document.querySelector('#form-active-button > span').classList.remove("active");
 					document.querySelector('#form-active-button > p').innerHTML = "Formular aktivieren";
 				}
-				
+
 				if (UrlindexOfIntro > 0) {
 					document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-inactive");
 				}
 			}
 			createRedactor()
 		});
-		
-	
+
+
 }
 
 
 function createRedactor() {
 	var editorExists = document.querySelectorAll("#editor");
 	var editorExistAlredy = document.getElementsByClassName("ql-editor");
-	if(document.querySelectorAll('.editor-hidden-input').length > 0){
+	if (document.querySelectorAll('.editor-hidden-input').length > 0) {
 		var name = document.querySelector('.editor-hidden-input').getAttribute('data-redactor');
 		if (name != 0) {
-	
+
 			if (editorExists.length > 0 && editorExistAlredy.length == 0) {
 				var toolbarOptions = [[{ 'header': [2, 3, false] }], ['bold'], ['link']];
 				var quill = new Quill('#editor', {
@@ -68,18 +68,22 @@ function createRedactor() {
 					}
 				});
 			}
-	
+
 			fetch(url + "/" + name)
-				.then(res => res.json())
+				.then((function (myJson) {
+					if (myJson.status == 401) {
+						window.location.pathname = "/admin/login.html";
+					}
+				}))
 				.then(function (data) {
 					var text = data.text;
 					document.querySelector('.ql-editor').innerHTML = text;
-	
+
 				});
-				
+
 			//if (UrlindexOfFormular > 0)
-				//getRedactor();
-			
+			//getRedactor();
+
 		}
 	}
 }
@@ -118,9 +122,11 @@ function postRedactor() {
 		headers: {
 			'Content-Type': 'application/json'
 		}
-	}).then(function (myJson) {
-	//	console.log(myJson);
-	});
+	}).then((function (myJson) {
+		if (myJson.status == 401) {
+			window.location.pathname = "/admin/login.html";
+		}
+	}));
 }
 
 function postFormularStatus() {
@@ -141,7 +147,7 @@ function postFormularStatus() {
 		if (myJson.status == 200) {
 			button.setAttribute("data-status-active", status);
 			GetformularStatus();
-			
+
 			if (status == true) {
 				//document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
 				document.querySelector('#form-active-button > span').classList.add("active");
@@ -151,11 +157,14 @@ function postFormularStatus() {
 				document.querySelector('#form-active-button > span').classList.remove("active");
 			}
 		}
+		if (myJson.status == 401) {
+			window.location.pathname = "/admin/login.html";
+		}
 	});
 }
 
 function getConcertInfo(name) {
-	var insertElement = document.querySelector('#'+name);
+	var insertElement = document.querySelector('#' + name);
 	fetch(url + "/" + name)
 		.then(res => res.json())
 		.then(function (data) {
@@ -167,16 +176,16 @@ function getConcertInfo(name) {
 /*document.addEventListener('DOMContentLoaded', function() {
 	getRedactor();
  }, false);*/
- 
- 
+
+
 window.onload = function () {
 	GetformularStatus();
-	
-	if (UrlindexOfFormular >= 0){
+
+	if (UrlindexOfFormular >= 0) {
 		getConcertInfo('title-concert-1');
 		getConcertInfo('time-concert-1');
 		getConcertInfo('title-concert-2');
 		getConcertInfo('time-concert-2');
 	}
-	
+
 }

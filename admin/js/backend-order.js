@@ -1,112 +1,72 @@
 // THIS FILE ONLY GETS USED BY THE BACKEND RESERVATIONEN PAGE
 
-const uri = 'https://kadetten-dev.scapp.io/api/order';
-// const uri = 'https://localhost:44389/api/order';
-
-
-function addItem() {
-    var getfrom = document.getElementById("ticketform").elements;
-    var items = document.getElementsByClassName("tickets");
-    var tickets = [];
-    var data = {
-        email: getfrom.namedItem("email").value,
-        phone: getfrom.namedItem("tel").value,
-        clientLastName: getfrom.namedItem("prename").value,
-        clientFirstName: getfrom.namedItem("lastname").value,
-        bemerkung: getfrom.namedItem("text").value,
-        kadettLastName: getfrom.namedItem("child-lastname").value,
-        kadettFirstName: getfrom.namedItem("child-prename").value,
-        KadettInKader: getfrom.namedItem("child-kader").checked,
-        tickets: tickets
-    }
-    for (var i = 0; i < items.length; i++) {
-        var ticket = {
-            type: items[i].getAttribute('data-ticket'),
-            quantity: Number(items[i].value),
-            day: items[i].getAttribute('data-day')
-        };
-        tickets.push(ticket);
-    }
-    fetch(uri, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (myJson) {
-        if (myJson.status == 200)
-            window.location.pathname = "/formfeedback.html";
-        else
-            if(myJson.status == 409){
-	            window.location.pathname = "/formemailerror.html";
-            }else{
-	            window.location.pathname = "/formerror.html";
-            }
-    });
-}
-
-
+// const uri = 'https://kadetten-dev.scapp.io/api/order';
+const uri = 'https://localhost:44389/api/order';
 function GetItems() {
-	if( document.querySelectorAll("#result").length > 0){
-		console.log('get');
-		fetch(uri)
-        .then(res => res.json())
-        .then(function (data) {
-            var html = '';
-            for (var i = 0; i < data.length; i++) {
-                html += '<tr >';
-                html += '<td>' + data[i].clientLastName + '</td>';
-                html += '<td>' + data[i].clientFirstName + '</td>';
-                html += '<td>' + data[i].email + '</td>';
-                html += '<td>' + data[i].phone + '</td>';
-                if (data[i].kadettLastName != "" || data[i].kadettFirstName != "")
-                    html += '<td>Ja</td>';
-                else
-                    html += '<td>Nein</td>';
-                html += '<td>' + data[i].kadettLastName + '</td>';
-                html += '<td>' + data[i].kadettFirstName + '</td>';
-                if (data[i].kadettInKader == true)
-                    html += '<td>Ja</td>';
-                else if (data[i].kadettInKader == false)
-                    html += '<td>Nein</td>';
-
-
-                var ticketsObj = {};
-                Object.assign(data[i].tickets, ticketsObj);
-
-                for (var x = 0; x < data[i].tickets.length; x++) {
-
-                    var day = data[i].tickets[x].day;
-                    var quantity = data[i].tickets[x].quantity;
-                    var type = data[i].tickets[x].type;
-
-
-                    if (type == "Erwachsene" && day == "Sa")
-                        html += '<td>' + quantity + '</td>';
-                    else if (type == "Kind" && day == "Sa")
-                        html += '<td>' + quantity + '</td>';
-                    else if (type == "Kleinkind" && day == "Sa")
-                        html += '<td>' + quantity + '</td>';
-                    else if (type == "Erwachsene" && day == "So")
-                        html += '<td>' + quantity + '</td>';
-                    else if (type == "Kind" && day == "So")
-                        html += '<td>' + quantity + '</td>';
-                    else if (type == "Kleinkind" && day == "So")
-                        html += '<td>' + quantity + '</td>';
+    if (document.querySelectorAll("#result").length > 0) {
+        console.log('get');
+        fetch(uri)
+            .then((function (myJson) {
+                if (myJson.status == 401) {
+                    window.location.pathname = "/admin/login.html";
                 }
-                html += '<td>' + data[i].bemerkung + '</td>';
-                //html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
-                html += '<td data-email="' + data[i].email + '" class="edit-icon">' + '<a data-email="' + data[i].email + '" href="#" ><i data-email="' + data[i].email + '" class="fas fa-pencil-alt"></i></a>' + '</td>';
-                html += '</tr>';
-            }
-            
-            document.getElementById("result").innerHTML = html;
+            }))
+            .then(function (data) {
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += '<tr >';
+                    html += '<td>' + data[i].clientLastName + '</td>';
+                    html += '<td>' + data[i].clientFirstName + '</td>';
+                    html += '<td>' + data[i].email + '</td>';
+                    html += '<td>' + data[i].phone + '</td>';
+                    if (data[i].kadettLastName != "" || data[i].kadettFirstName != "")
+                        html += '<td>Ja</td>';
+                    else
+                        html += '<td>Nein</td>';
+                    html += '<td>' + data[i].kadettLastName + '</td>';
+                    html += '<td>' + data[i].kadettFirstName + '</td>';
+                    if (data[i].kadettInKader == true)
+                        html += '<td>Ja</td>';
+                    else if (data[i].kadettInKader == false)
+                        html += '<td>Nein</td>';
 
-            // EDIT ICON FINDER FUNCTION
-            AssignEditIcons();
-        });
 
-	}
+                    var ticketsObj = {};
+                    Object.assign(data[i].tickets, ticketsObj);
+
+                    for (var x = 0; x < data[i].tickets.length; x++) {
+
+                        var day = data[i].tickets[x].day;
+                        var quantity = data[i].tickets[x].quantity;
+                        var type = data[i].tickets[x].type;
+
+
+                        if (type == "Erwachsene" && day == "Sa")
+                            html += '<td>' + quantity + '</td>';
+                        else if (type == "Kind" && day == "Sa")
+                            html += '<td>' + quantity + '</td>';
+                        else if (type == "Kleinkind" && day == "Sa")
+                            html += '<td>' + quantity + '</td>';
+                        else if (type == "Erwachsene" && day == "So")
+                            html += '<td>' + quantity + '</td>';
+                        else if (type == "Kind" && day == "So")
+                            html += '<td>' + quantity + '</td>';
+                        else if (type == "Kleinkind" && day == "So")
+                            html += '<td>' + quantity + '</td>';
+                    }
+                    html += '<td>' + data[i].bemerkung + '</td>';
+                    //html += '<td class="edit-icon">' + '<a onclick="modifyItem()" data-email="' + data[i].email + '" href="#" ><i class="fas fa-pencil-alt"></i></a>' + '</td>';
+                    html += '<td data-email="' + data[i].email + '" class="edit-icon">' + '<a data-email="' + data[i].email + '" href="#" ><i data-email="' + data[i].email + '" class="fas fa-pencil-alt"></i></a>' + '</td>';
+                    html += '</tr>';
+                }
+
+                document.getElementById("result").innerHTML = html;
+
+                // EDIT ICON FINDER FUNCTION
+                AssignEditIcons();
+            });
+
+    }
 }
 
 
@@ -124,7 +84,11 @@ function GetItemByEmail(e) {
     const url = uri + '/' + email;
 
     fetch(url)
-        .then(res => res.json())
+        .then((function (myJson) {
+            if (myJson.status == 401) {
+                window.location.pathname = "/admin/login.html";
+            }
+        }))
         .then(function (data) {
 
             var edithtml = '<section id="edit">';
@@ -233,8 +197,9 @@ function safePopUp(email) {
             document.getElementById('edit').remove();
             GetItems();
         }
-        else
-            console.log(myJson.statusText)
+        else if (myJson.status == 401) {
+            window.location.pathname = "/admin/login.html";
+        }
     });
 }
 
@@ -244,7 +209,11 @@ function deleteItem(email) {
 
     fetch(url, {
         method: 'delete',
-    }).then(res => res.json())
+    }).then((function (myJson) {
+        if (myJson.status == 401) {
+            window.location.pathname = "/admin/login.html";
+        }
+    }))
 }
 
 
@@ -253,20 +222,24 @@ function deleteItem(email) {
 function deleteAll() {
     if (confirm("Willst du wirklich alle Reservationen löschen ? (1/2)")) {
         if (confirm("Willst du wirklich alle Reservationen löschen ? (2/2)")) {
-        	//DELETE ALL CODE
-        	fetch(uri, {
-		        method: 'delete',
-		    }).then(res => res.json())
-		    .then(location.reload())
-    	}
+            //DELETE ALL CODE
+            fetch(uri, {
+                method: 'delete',
+            }).then((function (myJson) {
+                if (myJson.status == 401) {
+                    window.location.pathname = "/admin/login.html";
+                }
+            }))
+                .then(location.reload())
+        }
     }
 }
 
 function AssignDeleteButton() {
-	if(document.getElementById('delete-all') > 0){
-		document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
-	}
-    
+    if (document.getElementById('delete-all') > 0) {
+        document.getElementById('delete-all').addEventListener("click", function () { deleteAll() });
+    }
+
 }
 
 //     WINDOW: LOAD CALL
@@ -276,7 +249,7 @@ function AssignDeleteButton() {
     AssignDeleteButton();
 }*/
 
-document.addEventListener('DOMContentLoaded', function() {
-   	GetItems();
+document.addEventListener('DOMContentLoaded', function () {
+    GetItems();
     AssignDeleteButton();
 }, false);
