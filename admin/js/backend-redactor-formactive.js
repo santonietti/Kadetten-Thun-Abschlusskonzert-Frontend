@@ -128,9 +128,9 @@ function postRedactor() {
 	});
 	fetch(req)
 		.then((function (myJson) {
-			if (myJson.status == 401) {
-				window.location.pathname = "/admin/login.html";
-			}
+			// if (myJson.status == 401) {
+			// 	window.location.pathname = "/admin/login.html";
+			// }
 		}));
 }
 
@@ -162,9 +162,9 @@ function postFormularStatus() {
 					document.querySelector('#form-active-button > span').classList.remove("active");
 				}
 			}
-			if (myJson.status == 401) {
-				window.location.pathname = "/admin/login.html";
-			}
+			// if (myJson.status == 401) {
+			// 	window.location.pathname = "/admin/login.html";
+			// }
 		});
 }
 
@@ -190,7 +190,10 @@ function getConcertInfo(name) {
 
 window.onload = function () {
 	GetformularStatus();
-
+	if(getCookiePw() == null && getCookieName() == null)
+	{
+		window.location.pathname = "/admin/login.html";
+	}
 	if (UrlindexOfFormular >= 0) {
 		getConcertInfo('title-concert-1');
 		getConcertInfo('time-concert-1');

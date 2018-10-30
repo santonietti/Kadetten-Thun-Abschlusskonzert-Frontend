@@ -11,7 +11,7 @@ function GetItems() {
             headers: header,
         });
         fetch(req)
-            .then((res => res.json()))
+            .then(res => res.json())
             .then(function (data) {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
@@ -198,9 +198,9 @@ function safePopUp(email) {
                 document.getElementById('edit').remove();
                 GetItems();
             }
-            else if (myJson.status == 401) {
-                window.location.pathname = "/admin/login.html";
-            }
+            // else if (myJson.status == 401) {
+            //     window.location.pathname = "/admin/login.html";
+            // }
         });
 }
 
@@ -216,9 +216,9 @@ function deleteItem(email) {
     });
     fetch(req)
         .then((function (myJson) {
-            if (myJson.status == 401) {
-                window.location.pathname = "/admin/login.html";
-            }
+            // if (myJson.status == 401) {
+            //     window.location.pathname = "/admin/login.html";
+            // }
         }))
 }
 
@@ -239,9 +239,9 @@ function deleteAll() {
             fetch(uri, {
                 method: 'delete',
             }).then((function (myJson) {
-                if (myJson.status == 401) {
-                    window.location.pathname = "/admin/login.html";
-                }
+                // if (myJson.status == 401) {
+                //     window.location.pathname = "/admin/login.html";
+                // }
             }))
                 .then(location.reload())
         }
@@ -265,22 +265,26 @@ function AssignDeleteButton() {
 document.addEventListener('DOMContentLoaded', function () {
     GetItems();
     AssignDeleteButton();
+    if(getCookiePw() == null && getCookieName() == null)
+	{
+		window.location.pathname = "/admin/login.html";
+	}
 }, false);
 
-function getCookiePw() {
+function getCookiePwOrder() {
     var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
     return pw ? pw[2] : null;
 
 }
-function getCookieName() {
+function getCookieNameOrder() {
     var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
     return username ? username[2] : null;
 }
-function base64Request() {
+function base64RequestOrder() {
     var h = new Headers();
     h.append('Accept', 'application/json');
-    var name = getCookieName();
-    var pw = getCookiePw();
+    var name = getCookieNameOrder();
+    var pw = getCookiePwOrder();
     var string = '' + name + ':' + pw + '';
     var encoded = window.btoa(string);
     var auth = 'Basic ' + encoded;
