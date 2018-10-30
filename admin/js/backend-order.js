@@ -4,8 +4,13 @@ const uri = 'https://kadetten-dev.scapp.io/api/order';
 // const uri = 'https://localhost:44389/api/order';
 function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
-        console.log('get');
-        fetch(uri)
+
+        var header = base64Request();
+        var req = new Request(uri, {
+            method: 'GET',
+            headers: header,
+        });
+        fetch(req)
             .then((res => res.json()))
             .then(function (data) {
                 var html = '';
@@ -77,8 +82,12 @@ function AssignEditIcons() {
 function GetItemByEmail(e) {
     var email = e.target.getAttribute("data-email");
     const url = uri + '/' + email;
-
-    fetch(url)
+    var header = base64Request();
+    var req = new Request(url, {
+        method: 'GET',
+        headers: header,
+    });
+    fetch(req)
         .then((res => res.json()))
         .then(function (data) {
 
@@ -176,35 +185,41 @@ function safePopUp(email) {
         };
         tickets.push(ticket);
     }
-    fetch(url, {
+    var header = base64Request();
+    var req = new Request(url, {
         method: 'PUT',
         body: JSON.stringify(data),
         mode: "cors",
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (myJson) {
-        if (myJson.status == 200) {
-            document.getElementById('edit').remove();
-            GetItems();
-        }
-        else if (myJson.status == 401) {
-            window.location.pathname = "/admin/login.html";
-        }
+        headers: header,
     });
+    fetch(req)
+        .then(function (myJson) {
+            if (myJson.status == 200) {
+                document.getElementById('edit').remove();
+                GetItems();
+            }
+            else if (myJson.status == 401) {
+                window.location.pathname = "/admin/login.html";
+            }
+        });
 }
 
 
 function deleteItem(email) {
     var url = uri + '/' + email;
-
-    fetch(url, {
+    var header = base64Request();
+    var req = new Request(url, {
         method: 'delete',
-    }).then((function (myJson) {
-        if (myJson.status == 401) {
-            window.location.pathname = "/admin/login.html";
-        }
-    }))
+        body: JSON.stringify(data),
+        mode: "cors",
+        headers: header,
+    });
+    fetch(req)
+        .then((function (myJson) {
+            if (myJson.status == 401) {
+                window.location.pathname = "/admin/login.html";
+            }
+        }))
 }
 
 
@@ -214,6 +229,13 @@ function deleteAll() {
     if (confirm("Willst du wirklich alle Reservationen löschen ? (1/2)")) {
         if (confirm("Willst du wirklich alle Reservationen löschen ? (2/2)")) {
             //DELETE ALL CODE
+            var header = base64Request();
+            var req = new Request(url, {
+                method: 'delete',
+                body: JSON.stringify(data),
+                mode: "cors",
+                headers: header,
+            });
             fetch(uri, {
                 method: 'delete',
             }).then((function (myJson) {
@@ -243,14 +265,25 @@ function AssignDeleteButton() {
 document.addEventListener('DOMContentLoaded', function () {
     GetItems();
     AssignDeleteButton();
-    getCookie();
 }, false);
 
-function getCookie(){
-    var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
+function getCookiePw() {
     var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
+    return pw ? pw[2] : null;
 
-    user = username ? username[2] : null;
-    password = pw ? pw[2] : null;
-    console.log(user, password)
+}
+function getCookieName() {
+    var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
+    return username ? username[2] : null;
+}
+function base64Request() {
+    var h = new Headers();
+    h.append('Accept', 'application/json');
+    var name = getCookieName();
+    var pw = getCookiePw();
+    var string = '' + name + ':' + pw + '';
+    var encoded = window.btoa(string);
+    var auth = 'Basic ' + encoded;
+    h.append('Authorization', auth);
+    return h;
 }

@@ -1,10 +1,10 @@
-// const url = 'https://kadetten-dev.scapp.io/api/redactor';
-const url = 'https://localhost:44389//api/authenticate';
+const url = 'https://kadetten-dev.scapp.io/api/authenticate';
+// const url = 'https://localhost:44389//api/authenticate';
 
 
 function isAuthenticated() {
-    var username = document.querySelector('#loginform > fieldset > input[type="text"]:nth-child(1)');
-    var pw = document.querySelector('#loginform > fieldset > input[type="text"]:nth-child(2)');
+    var username = document.querySelector('#loginform > input[type="text"]:nth-child(1)');
+    var pw = document.querySelector('#loginform > input[type="text"]:nth-child(2)');
     var data = {
         username: username.value,
         pw: pw.value
@@ -15,9 +15,8 @@ function isAuthenticated() {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(res => res.json())
+    }).then((res => res.json()))
         .then(function (data1) {
-            //insertElement.innerHTML = data.text;
             if (data1 != null) {
                 var datetime = new Date();
                 datetime.setTime(datetime.getTime() + (2 * 60 * 60 * 1000));
@@ -27,5 +26,6 @@ function isAuthenticated() {
 
                 window.location.pathname = "/admin/reservationen.html";
             }
+
         });
 }

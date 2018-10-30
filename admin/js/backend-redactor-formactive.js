@@ -10,7 +10,12 @@ var UrlindexOfReservationen = document.URL.indexOf("reservationen.html");
 //window.addDomListener(window, 'load', addMap());
 
 function GetformularStatus() {
-	fetch(url + "/active")
+	var header = base64Request();
+	var req = new Request(url + "/active", {
+		method: 'GET',
+		headers: header,
+	});
+	fetch(req)
 		.then(res => res.json())
 		.then(function (data) {
 			if (UrlindexOfFormular >= 0)
@@ -68,9 +73,13 @@ function createRedactor() {
 					}
 				});
 			}
-
-			fetch(url + "/" + name)
-			.then((res => res.json()))
+			var header = base64Request();
+			var req = new Request(url + "/" + name, {
+				method: 'GET',
+				headers: header,
+			});
+			fetch(req)
+				.then((res => res.json()))
 				.then(function (data) {
 					var text = data.text;
 					document.querySelector('.ql-editor').innerHTML = text;
@@ -111,18 +120,18 @@ function postRedactor() {
 		}
 		datas.push(data);
 	}
-
-	fetch(url, {
+	var header = base64Request();
+	var req = new Request(url, {
 		method: 'Put',
 		body: JSON.stringify(datas),
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}).then((function (myJson) {
-		if (myJson.status == 401) {
-			window.location.pathname = "/admin/login.html";
-		}
-	}));
+		headers: header,
+	});
+	fetch(req)
+		.then((function (myJson) {
+			if (myJson.status == 401) {
+				window.location.pathname = "/admin/login.html";
+			}
+		}));
 }
 
 function postFormularStatus() {
@@ -133,35 +142,40 @@ function postFormularStatus() {
 		status = true
 	else if (status == "true")
 		status = false
-
-	fetch(url + "/active/" + status, {
+	var header = base64Request();
+	var req = new Request(url + "/active/" + status, {
 		method: 'Put',
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}).then(function (myJson) {
-		if (myJson.status == 200) {
-			button.setAttribute("data-status-active", status);
-			GetformularStatus();
-
-			if (status == true) {
-				//document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
-				document.querySelector('#form-active-button > span').classList.add("active");
-			}
-			if (status == false) {
-				//document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-inactive");
-				document.querySelector('#form-active-button > span').classList.remove("active");
-			}
-		}
-		if (myJson.status == 401) {
-			window.location.pathname = "/admin/login.html";
-		}
+		headers: header,
 	});
+	fetch(req)
+		.then(function (myJson) {
+			if (myJson.status == 200) {
+				button.setAttribute("data-status-active", status);
+				GetformularStatus();
+
+				if (status == true) {
+					//document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-active");
+					document.querySelector('#form-active-button > span').classList.add("active");
+				}
+				if (status == false) {
+					//document.querySelector('.editor-hidden-input').setAttribute('data-redactor', "intro-inactive");
+					document.querySelector('#form-active-button > span').classList.remove("active");
+				}
+			}
+			if (myJson.status == 401) {
+				window.location.pathname = "/admin/login.html";
+			}
+		});
 }
 
 function getConcertInfo(name) {
 	var insertElement = document.querySelector('#' + name);
-	fetch(url + "/" + name)
+	var header = base64Request();
+	var req = new Request(url+ "/" + name, {
+		method: 'Get',
+		headers: header,
+	});
+	fetch(req)
 		.then(res => res.json())
 		.then(function (data) {
 			//insertElement.innerHTML = data.text;
@@ -184,4 +198,24 @@ window.onload = function () {
 		getConcertInfo('time-concert-2');
 	}
 
+}
+function getCookiePw() {
+    var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
+    return pw ? pw[2] : null;
+
+}
+function getCookieName() {
+    var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
+    return username ? username[2] : null;
+}
+function base64Request() {
+	var h = new Headers();
+	h.append('Accept', 'application/json');
+	var name = getCookieName();
+	var pw = getCookiePw();
+	var string = '' + name + ':' + pw + '';
+	var encoded = window.btoa(string);
+	var auth = 'Basic ' + encoded;
+	h.append('Authorization', auth);
+	return h;
 }
