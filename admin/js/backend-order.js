@@ -1,12 +1,12 @@
 // THIS FILE ONLY GETS USED BY THE BACKEND RESERVATIONEN PAGE
 
-const uri = 'https://kadetten-dev.scapp.io/api/order';
-// const uri = 'https://localhost:44389/api/order';
+// const uriOrder = 'https://kadetten-dev.scapp.io/api/order';
+const uriOrder = 'https://localhost:5001/api/order';
 function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
 
         var header = base64Request();
-        var req = new Request(uri, {
+        var req = new Request(uriOrder, {
             method: 'GET',
             headers: header,
         });
@@ -81,7 +81,7 @@ function AssignEditIcons() {
 
 function GetItemByEmail(e) {
     var email = e.target.getAttribute("data-email");
-    const url = uri + '/' + email;
+    const url = uriOrder + '/' + email;
     var header = base64Request();
     var req = new Request(url, {
         method: 'GET',
@@ -171,11 +171,46 @@ function closePopUp() {
 function safePopUp(email) {
     var items = document.getElementsByClassName("tickets");
     var tickets = [];
-    var url = uri + '/' + email;
+    var urlOrder = uriOrder + '/' + email;
 
+    // var data = {
+    //     email: document.getElementsByName("email")[0].value,
+    //     tickets: tickets
+    // }
     var data = {
-        email: document.getElementsByName("email")[0].value,
-        tickets: tickets
+        email: "nobelentimon@gmail.com",
+        tickets: [
+            {
+                type: "Erwachsene",
+                quantity: 4,
+                day: "Sa"
+            },
+            {
+                type: "Erwachsene",
+                quantity: 0,
+                day: "So"
+            },
+            {
+               type: "Kind",
+               quantity: 0,
+               day: "Sa"
+            },
+            {
+                type: "Kind",
+                quantity: 0,
+                day: "So"
+            },
+            {
+                type: "Kleinkind",
+                quantity: 0,
+                day: "Sa"
+            },
+            {
+                type: "Kleinkind",
+                quantity: 0,
+                day: "So"
+            }
+        ]
     }
     for (var i = 0; i < items.length; i++) {
         var ticket = {
@@ -186,11 +221,10 @@ function safePopUp(email) {
         tickets.push(ticket);
     }
     var header = base64Request();
-    var req = new Request(url, {
-        method: 'PUT',
+    var req = new Request(urlOrder, {
+        method: 'Post',
         body: JSON.stringify(data),
-        mode: "cors",
-        headers: header,
+        headers: header
     });
     fetch(req)
         .then(function (myJson) {
@@ -206,7 +240,7 @@ function safePopUp(email) {
 
 
 function deleteItem(email) {
-    var url = uri + '/' + email;
+    var url = uriOrder + '/' + email;
     var header = base64Request();
     var req = new Request(url, {
         method: 'delete',
@@ -225,28 +259,28 @@ function deleteItem(email) {
 
 
 
-function deleteAll() {
-    if (confirm("Willst du wirklich alle Reservationen löschen ? (1/2)")) {
-        if (confirm("Willst du wirklich alle Reservationen löschen ? (2/2)")) {
-            //DELETE ALL CODE
-            var header = base64Request();
-            var req = new Request(url, {
-                method: 'delete',
-                body: JSON.stringify(data),
-                mode: "cors",
-                headers: header,
-            });
-            fetch(uri, {
-                method: 'delete',
-            }).then((function (myJson) {
-                // if (myJson.status == 401) {
-                //     window.location.pathname = "/admin/login.html";
-                // }
-            }))
-                .then(location.reload())
-        }
-    }
-}
+// function deleteAll() {
+//     if (confirm("Willst du wirklich alle Reservationen löschen ? (1/2)")) {
+//         if (confirm("Willst du wirklich alle Reservationen löschen ? (2/2)")) {
+//             //DELETE ALL CODE
+//             var header = base64Request();
+//             var req = new Request(url, {
+//                 method: 'Delete',
+//                 body: JSON.stringify(data),
+//                 mode: "cors",
+//                 headers: header,
+//             });
+//             fetch(uriOrder, {
+//                 method: 'delete',
+//             }).then((function (myJson) {
+//                 // if (myJson.status == 401) {
+//                 //     window.location.pathname = "/admin/login.html";
+//                 // }
+//             }))
+//                 .then(location.reload())
+//         }
+//     }
+// }
 
 function AssignDeleteButton() {
     if (document.getElementById('delete-all') > 0) {
@@ -265,10 +299,9 @@ function AssignDeleteButton() {
 document.addEventListener('DOMContentLoaded', function () {
     GetItems();
     AssignDeleteButton();
-    if(getCookiePw() == null && getCookieName() == null)
-	{
-		window.location.pathname = "/admin/login.html";
-	}
+    if (getCookiePw() == null && getCookieName() == null) {
+        window.location.pathname = "/admin/login.html";
+    }
 }, false);
 
 function getCookiePwOrder() {

@@ -1,4 +1,4 @@
-const url = 'https://kadetten-dev.scapp.io/api/authenticate';
+const urlLogin = 'https://kadetten-dev.scapp.io/api/authenticate';
 // const url = 'https://localhost:44389//api/authenticate';
 
 
@@ -9,7 +9,7 @@ function isAuthenticated() {
         username: username.value,
         pw: pw.value
     }
-    fetch(url, {
+    fetch(urlLogin, {
         method: 'Post',
         body: JSON.stringify(data),
         headers: {

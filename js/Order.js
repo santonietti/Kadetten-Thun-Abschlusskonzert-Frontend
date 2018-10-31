@@ -1,4 +1,5 @@
 const uri = 'https://kadetten-dev.scapp.io/api/order';
+// const uri = 'https://localhost:44389/api/order';
 
 
 function addItem() {

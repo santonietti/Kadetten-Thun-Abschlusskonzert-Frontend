@@ -1,6 +1,7 @@
 // THIS FILE IS USED IN BACKEND FORMULAR AND INTRO PAGE
 
-const url = 'https://kadetten-dev.scapp.io/api/redactor';
+const urlRedactor = 'https://kadetten-dev.scapp.io/api/redactor';
+
 var UrlindexOfFormular = document.URL.indexOf("formular.html");
 var UrlindexOfIntro = document.URL.indexOf("intro.html");
 var UrlindexOfReservationen = document.URL.indexOf("reservationen.html");
@@ -11,7 +12,7 @@ var UrlindexOfReservationen = document.URL.indexOf("reservationen.html");
 
 function GetformularStatus() {
 	var header = base64Request();
-	var req = new Request(url + "/active", {
+	var req = new Request(urlRedactor + "/active", {
 		method: 'GET',
 		headers: header,
 	});
@@ -74,7 +75,7 @@ function createRedactor() {
 				});
 			}
 			var header = base64Request();
-			var req = new Request(url + "/" + name, {
+			var req = new Request(urlRedactor + "/" + name, {
 				method: 'GET',
 				headers: header,
 			});
@@ -121,7 +122,7 @@ function postRedactor() {
 		datas.push(data);
 	}
 	var header = base64Request();
-	var req = new Request(url, {
+	var req = new Request(urlRedactor, {
 		method: 'Put',
 		body: JSON.stringify(datas),
 		headers: header,
@@ -143,7 +144,7 @@ function postFormularStatus() {
 	else if (status == "true")
 		status = false
 	var header = base64Request();
-	var req = new Request(url + "/active/" + status, {
+	var req = new Request(urlRedactor + "/active/" + status, {
 		method: 'Put',
 		headers: header,
 	});
@@ -171,7 +172,7 @@ function postFormularStatus() {
 function getConcertInfo(name) {
 	var insertElement = document.querySelector('#' + name);
 	var header = base64Request();
-	var req = new Request(url+ "/" + name, {
+	var req = new Request(urlRedactor+ "/" + name, {
 		method: 'Get',
 		headers: header,
 	});
