@@ -38,7 +38,7 @@ function getRedactor() {
  
 window.onload = function () {
 	//CHECKING WHICH PAGE IT IS BECAUSE WE ONLY NEED TO CHECK FOR FORMSTATUS ON INDEX PAGE.
-	if(document.URL.indexOf("index.html") > 0){
+	if(document.URL.indexOf("index.html") > 0 || window.location.pathname == "/" ){
 		GetformularStatus();
 	}else{
 		getRedactor();

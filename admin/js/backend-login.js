@@ -18,8 +18,9 @@ function isAuthenticated() {
     }).then(function (myJson) {
         if (myJson.status == 200) {
             var datetime = new Date();
-            datetime.setTime(datetime.getTime() + (2 * 60 * 60 * 1000));
-            var expires = +datetime.toGMTString();
+            // datetime.setTime(datetime.getTime() + (2 * 60 * 60 * 1000));
+            datetime.setTime(datetime.getTime()+(10*1000));
+            var expires = + datetime.toGMTString();
             document.cookie = "username=" + data.username + ";expires=" + expires;
             document.cookie = "pw=" + data.pw + ";expires=" + expires;
             window.location.pathname = "/admin/reservationen.html";
