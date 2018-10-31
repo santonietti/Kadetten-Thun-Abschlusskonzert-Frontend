@@ -15,17 +15,14 @@ function isAuthenticated() {
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then((res => res.json()))
-        .then(function (data1) {
-            if (data1 != null) {
-                var datetime = new Date();
-                datetime.setTime(datetime.getTime() + (2 * 60 * 60 * 1000));
-                var expires = +datetime.toGMTString();
-                document.cookie = "username=" + data.username + ";expires=" + expires;
-                document.cookie = "pw=" + data.pw + ";expires=" + expires;
-
-                window.location.pathname = "/admin/reservationen.html";
-            }
-
-        });
+    }).then(function (myJson) {
+        if (myJson.status == 200) {
+            var datetime = new Date();
+            datetime.setTime(datetime.getTime() + (2 * 60 * 60 * 1000));
+            var expires = +datetime.toGMTString();
+            document.cookie = "username=" + data.username + ";expires=" + expires;
+            document.cookie = "pw=" + data.pw + ";expires=" + expires;
+            window.location.pathname = "/admin/reservationen.html";
+        }
+    });
 }
