@@ -4,7 +4,7 @@ const url = 'https://kadetten-dev.scapp.io/api/authenticate';
 
 function isAuthenticated() {
     var username = document.querySelector('#loginform > input[type="text"]:nth-child(1)');
-    var pw = document.querySelector('#loginform > input[type="text"]:nth-child(2)');
+    var pw = document.querySelector('#loginform > input[type="password"]:nth-child(2)');
     var data = {
         username: username.value,
         pw: pw.value
