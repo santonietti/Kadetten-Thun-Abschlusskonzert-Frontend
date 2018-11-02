@@ -1,7 +1,7 @@
 // THIS FILE ONLY GETS USED BY THE BACKEND RESERVATIONEN PAGE
 
-// const uriOrder = 'https://kadetten-dev.scapp.io/api/order';
-const uriOrder = 'https://localhost:5001/api/order';
+const uriOrder = 'https://kadetten-dev.scapp.io/api/order';
+// const uriOrder = 'https://localhost:44389/api/order';
 function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
 
@@ -173,44 +173,9 @@ function safePopUp(email) {
     var tickets = [];
     var urlOrder = uriOrder + '/' + email;
 
-    // var data = {
-    //     email: document.getElementsByName("email")[0].value,
-    //     tickets: tickets
-    // }
     var data = {
-        email: "nobelentimon@gmail.com",
-        tickets: [
-            {
-                type: "Erwachsene",
-                quantity: 4,
-                day: "Sa"
-            },
-            {
-                type: "Erwachsene",
-                quantity: 0,
-                day: "So"
-            },
-            {
-               type: "Kind",
-               quantity: 0,
-               day: "Sa"
-            },
-            {
-                type: "Kind",
-                quantity: 0,
-                day: "So"
-            },
-            {
-                type: "Kleinkind",
-                quantity: 0,
-                day: "Sa"
-            },
-            {
-                type: "Kleinkind",
-                quantity: 0,
-                day: "So"
-            }
-        ]
+        email: document.getElementsByName("email")[0].value,
+        tickets: tickets
     }
     for (var i = 0; i < items.length; i++) {
         var ticket = {
@@ -222,7 +187,7 @@ function safePopUp(email) {
     }
     var header = base64Request();
     var req = new Request(urlOrder, {
-        method: 'Post',
+        method: 'Put',
         body: JSON.stringify(data),
         headers: header
     });
@@ -232,9 +197,6 @@ function safePopUp(email) {
                 document.getElementById('edit').remove();
                 GetItems();
             }
-            // else if (myJson.status == 401) {
-            //     window.location.pathname = "/admin/login.html";
-            // }
         });
 }
 
