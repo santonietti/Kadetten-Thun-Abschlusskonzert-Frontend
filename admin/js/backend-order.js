@@ -1,8 +1,8 @@
 // THIS FILE ONLY GETS USED BY THE BACKEND RESERVATIONEN PAGE
 
 // const uriOrder = 'https://kadetten-dev.scapp.io/api/order';
-// const uriOrder = 'https://localhost:44389/api/order';
-const uriOrder = '/api/order';
+const uriOrder = 'https://localhost:44389/api/order';
+// const uriOrder = '/api/order';
 function GetItems() {
     if (document.querySelectorAll("#result").length > 0) {
 
@@ -186,7 +186,7 @@ function safePopUp(email) {
         };
         tickets.push(ticket);
     }
-    var header = base64Request();
+    var header = base64RequestOrder();
     var req = new Request(urlOrder, {
         method: 'Put',
         body: JSON.stringify(data),
@@ -278,7 +278,7 @@ function getCookieNameOrder() {
 }
 function base64RequestOrder() {
     var h = new Headers();
-    h.append('Accept', 'application/json');
+    h.append('Content-Type', 'application/json');
     var name = getCookieNameOrder();
     var pw = getCookiePwOrder();
     var string = '' + name + ':' + pw + '';

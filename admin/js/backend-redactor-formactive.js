@@ -1,8 +1,8 @@
 // THIS FILE IS USED IN BACKEND FORMULAR AND INTRO PAGE
 
 // const urlRedactor = 'https://kadetten-dev.scapp.io/api/redactor';
-// const urlRedactor = 'https://localhost:44389/api/redactor';
-const urlRedactor = '/api/redactor';
+const urlRedactor = 'https://localhost:44389/api/redactor';
+// const urlRedactor = '/api/redactor';
 
 var UrlindexOfFormular = document.URL.indexOf("formular.html");
 var UrlindexOfIntro = document.URL.indexOf("intro.html");
@@ -174,7 +174,7 @@ function postFormularStatus() {
 function getConcertInfo(name) {
 	var insertElement = document.querySelector('#' + name);
 	var header = base64Request();
-	var req = new Request(urlRedactor+ "/" + name, {
+	var req = new Request(urlRedactor + "/" + name, {
 		method: 'Get',
 		headers: header,
 	});
@@ -186,19 +186,8 @@ function getConcertInfo(name) {
 		});
 }
 
-function getUserName(){
-	var header = base64Request();
-	var req = new Request(urlLogin, {
-		method: 'GET',
-		headers: header,
-	});
-	fetch(req)
-		.then(res => res.json())
-		.then(function (data) {
-	        var username = data[0].username; // @ TIMON isch ds okei so mitem [0]
-	        document.querySelector('#user-panel > div > p').innerHTML = username;
-    	});
-	
+function getUserName() {
+	document.querySelector('#user-panel > div > p').innerHTML = getCookieName();
 }
 
 /*document.addEventListener('DOMContentLoaded', function() {
@@ -208,8 +197,7 @@ function getUserName(){
 
 window.onload = function () {
 	GetformularStatus();
-	if(getCookiePw() == null && getCookieName() == null)
-	{
+	if (getCookiePw() == null && getCookieName() == null) {
 		window.location.pathname = "/admin/login.html";
 	}
 	if (UrlindexOfFormular >= 0) {
@@ -221,18 +209,18 @@ window.onload = function () {
 	getUserName();
 }
 function getCookiePw() {
-    var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
-    return pw ? pw[2] : null;
+	var pw = document.cookie.match('(^|;) ?pw=([^;]*)(;|$)');
+	return pw ? pw[2] : null;
 
 }
 function getCookieName() {
-    var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
-    return username ? username[2] : null;
+	var username = document.cookie.match('(^|;) ?username=([^;]*)(;|$)');
+	return username ? username[2] : null;
 }
 
 function base64Request() {
 	var h = new Headers();
-	h.append('Accept', 'application/json');
+	h.append('Content-Type', 'application/json');
 	var name = getCookieName();
 	var pw = getCookiePw();
 	var string = '' + name + ':' + pw + '';
